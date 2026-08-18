@@ -1,6 +1,12 @@
+'use client'
+
 import Link from 'next/link'
 import { Container } from '../ui/Container'
 import { SectionHeading } from '../ui/SectionHeading'
+import { AnimateOnScroll } from '../motion/AnimateOnScroll'
+import { StaggerGroup, StaggerItem } from '../motion/StaggerGroup'
+import { motion } from 'framer-motion'
+import { tapScale } from '@/lib/motion-variants'
 
 const PORTALS = [
   { label: 'Undergraduate', href: 'https://degportal.tsuniversity.edu.ng' },
@@ -15,20 +21,27 @@ export function PortalsTeaser() {
   return (
     <section className="py-16">
       <Container>
-        <SectionHeading eyebrow="Quick Access" title="Student & Applicant Portals" />
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        <AnimateOnScroll>
+          <SectionHeading eyebrow="Quick Access" title="Student & Applicant Portals" />
+        </AnimateOnScroll>
+
+        <StaggerGroup className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6" staggerDelay={0.05}>
           {PORTALS.map((portal) => (
-            <a
-              key={portal.label}
-              href={portal.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-24 items-center justify-center rounded-card border border-black/5 bg-white text-center text-sm font-semibold text-navy shadow-sm transition hover:border-crimson hover:text-crimson"
-            >
-              {portal.label}
-            </a>
+            <StaggerItem key={portal.label}>
+              <motion.div {...tapScale} className="h-full">
+                <a
+                  href={portal.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-24 items-center justify-center rounded-card border border-black/5 bg-white text-center text-sm font-semibold text-navy shadow-sm transition hover:border-crimson hover:text-crimson"
+                >
+                  {portal.label}
+                </a>
+              </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
+
         <div className="mt-6 text-center">
           <Link href="/portals" className="text-sm font-semibold text-crimson">
             View All Portals →

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Sora, Inter } from 'next/font/google'
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
+import { MotionProvider } from '../components/motion/MotionProvider'
+import { PageTransition } from '../components/motion/PageTransition'
 import './globals.css'
 
 const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
@@ -16,9 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${sora.variable} ${inter.variable}`}>
       <body className="font-body text-ink">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Header />
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   )
