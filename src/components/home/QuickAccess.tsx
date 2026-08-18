@@ -1,0 +1,42 @@
+import Link from 'next/link'
+import { Container } from '../ui/Container'
+
+const TRACKS = [
+  {
+    title: 'Undergraduate Programmes',
+    description: 'Explore degree programs across nine faculties, from Engineering to Law.',
+    href: '/admissions/undergraduate',
+  },
+  {
+    title: 'Postgraduate Programmes',
+    description: 'Internationally recognized master\'s and doctoral research programs.',
+    href: '/admissions/postgraduate',
+  },
+  {
+    title: 'Distance Learning',
+    description: 'Earn your degree remotely through our accredited distance learning centre.',
+    href: '/portals',
+  },
+]
+
+export function QuickAccess() {
+  return (
+    <section className="py-16">
+      <Container className="grid gap-6 md:grid-cols-3">
+        {TRACKS.map((track) => (
+          <Link
+            key={track.title}
+            href={track.href}
+            className="group rounded-card border border-black/5 p-6 shadow-sm transition hover:border-crimson hover:shadow-md"
+          >
+            <h3 className="font-display text-lg font-semibold text-navy group-hover:text-crimson">
+              {track.title}
+            </h3>
+            <p className="mt-2 text-sm text-ink-muted">{track.description}</p>
+            <span className="mt-4 inline-block text-sm font-semibold text-crimson">List of Courses →</span>
+          </Link>
+        ))}
+      </Container>
+    </section>
+  )
+}
