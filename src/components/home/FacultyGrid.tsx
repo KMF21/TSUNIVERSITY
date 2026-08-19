@@ -46,7 +46,7 @@ export async function FacultyGrid() {
                   />
                 )}
                 <div className="absolute inset-0 flex items-end bg-gradient-to-t from-navy-900/90 to-transparent p-4">
-                  <p className="font-display text-sm font-semibold text-white">{faculty.name}</p>
+                  <p className="font-display text-md font-semibold text-white">{faculty.name}</p>
                 </div>
               </Link>
             </StaggerItem>

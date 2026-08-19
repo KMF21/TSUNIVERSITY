@@ -1,10 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '../../../sanity/client'
-import { ALL_FACULTIES_QUERY } from '../../../sanity/queries'
-import { urlFor } from '../../../sanity/image'
-import { Container } from '../../components/ui/Container'
-import { SectionHeading } from '../../components/ui/SectionHeading'
+import { client } from '@/sanity/client'
+import { ALL_FACULTIES_QUERY } from '@/sanity/queries'
+import { Container } from '@/components/ui/Container'
+import { SectionHeading } from '@/components/ui/SectionHeading'
+import { urlFor } from '@/sanity/image'
+// import { client } from '../../../sanity/client'
+// import { ALL_FACULTIES_QUERY } from '../../../sanity/queries'
+// import { urlFor } from '../../../sanity/image'
+// import { Container } from '../../components/ui/Container'
+// import { SectionHeading } from '../../components/ui/SectionHeading'
 
 type Faculty = {
   _id: string
@@ -42,7 +47,7 @@ export default async function AcademicsPage() {
               <h3 className="font-display text-lg font-semibold text-navy group-hover:text-crimson">
                 {faculty.name}
               </h3>
-              <p className="mt-1 text-sm text-ink-muted">{faculty.departmentCount} Departments</p>
+              <p className="mt-1 text-md text-ink-muted">{faculty.departmentCount} Departments</p>
             </div>
           </Link>
         ))}

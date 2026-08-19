@@ -40,7 +40,7 @@ export function Card({
           </span>
         )}
         <h3 className="font-display text-lg font-semibold text-navy group-hover:text-crimson">{title}</h3>
-        {excerpt && <p className="line-clamp-2 text-sm text-ink-muted">{excerpt}</p>}
+        {excerpt && <p className="line-clamp-2 text-md text-ink-muted">{excerpt}</p>}
         {meta && <span className="mt-auto pt-2 text-xs text-ink-muted">{meta}</span>}
       </div>
     </Link>

@@ -22,7 +22,7 @@ export function TopBar() {
       variants={fadeIn}
       className="hidden bg-navy-900 text-white/90 lg:block"
     >
-      <div className="mx-auto flex h-10 w-full max-w-7xl items-center justify-between px-6 text-sm lg:px-8">
+      <div className="mx-auto flex h-10 w-full max-w-7xl items-center justify-between px-6 text-md lg:px-8">
         <motion.a
           initial="hidden"
           animate="visible"

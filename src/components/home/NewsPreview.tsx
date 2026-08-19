@@ -26,7 +26,7 @@ export async function NewsPreview() {
       <Container>
         <AnimateOnScroll className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading eyebrow="Latest Updates" title="Campus News" align="left" />
-          <Link href="/news" className="text-sm font-semibold text-crimson">
+          <Link href="/news" className="text-md font-semibold text-crimson">
             View All News →
           </Link>
         </AnimateOnScroll>

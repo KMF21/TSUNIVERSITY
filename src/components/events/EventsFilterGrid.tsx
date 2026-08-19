@@ -35,7 +35,7 @@ export function EventsFilterGrid({ events }: { events: Event[] }) {
             key={filter.value}
             onClick={() => setActive(filter.value)}
             aria-pressed={active === filter.value}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson ${
+            className={`rounded-full px-4 py-2 text-md font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson ${
               active === filter.value
                 ? 'bg-crimson text-white'
                 : 'bg-rose-tint text-navy hover:bg-crimson-50'

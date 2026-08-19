@@ -63,7 +63,7 @@ export function PageBuilder({
               <div key={i} className="border-l-2 border-crimson pl-4">
                 <p className="font-display text-xl font-bold text-crimson">{section.year}</p>
                 <p className="font-semibold text-navy">{section.title}</p>
-                {section.description && <p className="text-sm text-ink-muted">{section.description}</p>}
+                {section.description && <p className="text-md text-ink-muted">{section.description}</p>}
               </div>
             )
           }

@@ -26,7 +26,7 @@ export async function EventsPreview() {
       <Container>
         <AnimateOnScroll className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading eyebrow="What's On" title="Upcoming Events" align="left" />
-          <Link href="/events" className="text-sm font-semibold text-crimson">
+          <Link href="/events" className="text-md font-semibold text-crimson">
             View All Events →
           </Link>
         </AnimateOnScroll>

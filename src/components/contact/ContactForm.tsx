@@ -13,12 +13,12 @@ export function ContactForm() {
       <h3 className="font-display text-lg font-semibold text-navy">Send Us a Message</h3>
 
       {state.status === 'success' && (
-        <p role="status" className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700">
+        <p role="status" className="rounded-lg bg-green-50 px-4 py-3 text-md text-green-700">
           {state.message}
         </p>
       )}
       {state.status === 'error' && (
-        <p role="alert" className="rounded-lg bg-crimson-50 px-4 py-3 text-sm text-crimson">
+        <p role="alert" className="rounded-lg bg-crimson-50 px-4 py-3 text-md text-crimson">
           {state.message}
         </p>
       )}
@@ -29,14 +29,14 @@ export function ContactForm() {
           name="name"
           placeholder="Enter your name"
           required
-          className="rounded-lg border border-black/10 px-4 py-2.5 text-sm"
+          className="rounded-lg border border-black/10 px-4 py-2.5 text-md"
         />
         <input
           type="email"
           name="email"
           placeholder="Enter your email"
           required
-          className="rounded-lg border border-black/10 px-4 py-2.5 text-sm"
+          className="rounded-lg border border-black/10 px-4 py-2.5 text-md"
         />
       </div>
       <input
@@ -44,14 +44,14 @@ export function ContactForm() {
         name="subject"
         placeholder="How can we help?"
         required
-        className="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm"
+        className="w-full rounded-lg border border-black/10 px-4 py-2.5 text-md"
       />
       <textarea
         name="message"
         placeholder="Write your message here..."
         rows={5}
         required
-        className="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm"
+        className="w-full rounded-lg border border-black/10 px-4 py-2.5 text-md"
       />
       <button
         type="submit"

@@ -28,7 +28,7 @@ export function Accordion({ groupTitle, items }: { groupTitle?: string; items: A
                 <span className={`text-crimson transition-transform ${isOpen ? 'rotate-45' : ''}`}>+</span>
               </button>
               {isOpen && (
-                <div className="px-5 pb-5 text-sm text-ink-muted">
+                <div className="px-5 pb-5 text-md text-ink-muted">
                   {item.body ? (
                     <PortableText value={item.body} />
                   ) : (

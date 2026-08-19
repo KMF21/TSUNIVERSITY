@@ -39,8 +39,8 @@ export function QuickAccess() {
                 <h3 className="font-display text-lg font-semibold text-navy group-hover:text-crimson">
                   {track.title}
                 </h3>
-                <p className="mt-2 text-sm text-ink-muted">{track.description}</p>
-                <span className="mt-4 inline-block text-sm font-semibold text-crimson">List of Courses →</span>
+                <p className="mt-2 text-md text-ink-muted">{track.description}</p>
+                <span className="mt-4 inline-block text-md font-semibold text-crimson">List of Courses →</span>
               </Link>
             </motion.div>
           </StaggerItem>

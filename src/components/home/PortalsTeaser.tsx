@@ -33,7 +33,7 @@ export function PortalsTeaser() {
                   href={portal.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-24 items-center justify-center rounded-card border border-black/5 bg-white text-center text-sm font-semibold text-navy shadow-sm transition hover:border-crimson hover:text-crimson"
+                  className="flex h-24 items-center justify-center rounded-card border border-black/5 bg-white text-center text-md font-semibold text-navy shadow-sm transition hover:border-crimson hover:text-crimson"
                 >
                   {portal.label}
                 </a>
@@ -43,7 +43,7 @@ export function PortalsTeaser() {
         </StaggerGroup>
 
         <div className="mt-6 text-center">
-          <Link href="/portals" className="text-sm font-semibold text-crimson">
+          <Link href="/portals" className="text-md font-semibold text-crimson">
             View All Portals →
           </Link>
         </div>

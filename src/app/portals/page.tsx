@@ -29,7 +29,7 @@ export default function PortalsPage() {
             className="rounded-card border border-black/5 p-5 shadow-sm transition hover:border-crimson"
           >
             <h3 className="font-semibold text-navy">{portal.label}</h3>
-            <p className="mt-1 text-sm text-ink-muted">{portal.description}</p>
+            <p className="mt-1 text-md text-ink-muted">{portal.description}</p>
           </a>
         ))}
       </div>

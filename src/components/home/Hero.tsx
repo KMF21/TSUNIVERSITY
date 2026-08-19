@@ -24,7 +24,7 @@ export function Hero() {
         >
           <motion.span
             variants={fadeInUp}
-            className="inline-block rounded-full bg-crimson-50 px-4 py-1.5 text-sm font-semibold text-crimson"
+            className="inline-block rounded-full bg-crimson-50 px-4 py-1.5 text-md font-semibold text-crimson"
           >
             Premier Academic Institution
           </motion.span>
@@ -104,7 +104,7 @@ export function Hero() {
               <ShieldCheck className="h-5 w-5" />
             </span>
             <div className="leading-tight">
-              <p className="text-sm font-bold text-navy">Fully Accredited</p>
+              <p className="text-md font-bold text-navy">Fully Accredited</p>
               <p className="text-xs text-ink-muted">Nationally Recognized</p>
             </div>
           </motion.div>

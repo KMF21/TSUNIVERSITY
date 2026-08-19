@@ -50,13 +50,13 @@ export function AboutSection() {
             className="absolute bottom-6 left-6 rounded-card bg-crimson px-6 py-4 text-white shadow-lg"
           >
             <p className="font-display text-3xl font-bold">60+</p>
-            <p className="text-sm font-semibold uppercase tracking-wide">Years of Excellence</p>
+            <p className="text-md font-semibold uppercase tracking-wide">Years of Excellence</p>
           </motion.div>
         </motion.div>
 
         <div>
           <AnimateOnScroll>
-            <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-crimson">
+            <span className="inline-flex items-center gap-2 text-md font-semibold uppercase tracking-wide text-crimson">
               <span className="h-0.5 w-6 bg-crimson" />
               Who We Are
             </span>
@@ -80,7 +80,7 @@ export function AboutSection() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-4 font-display text-lg font-semibold text-navy">{title}</h3>
-                <p className="mt-2 text-sm text-ink-muted">{body}</p>
+                <p className="mt-2 text-md text-ink-muted">{body}</p>
               </StaggerItem>
             ))}
           </StaggerGroup>

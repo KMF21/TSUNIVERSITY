@@ -17,7 +17,7 @@ export default function ContactPage() {
         {INFO.map((item) => (
           <div key={item.label} className="rounded-card border-b-2 border-crimson bg-white p-6 text-center shadow-sm">
             <h3 className="font-semibold text-navy">{item.label}</h3>
-            <p className="mt-2 text-sm text-ink-muted">{item.value}</p>
+            <p className="mt-2 text-md text-ink-muted">{item.value}</p>
           </div>
         ))}
       </div>
