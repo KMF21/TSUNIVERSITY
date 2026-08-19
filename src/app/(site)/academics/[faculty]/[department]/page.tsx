@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
-import { client } from '../../../../../sanity/client'
-import { DEPARTMENT_BY_SLUG_QUERY } from '../../../../../sanity/queries'
-import { Container } from '../../../../components/ui/Container'
+import { client } from '@/sanity/client'
+import { DEPARTMENT_BY_SLUG_QUERY } from '@/sanity/queries'
+import { Container } from '@/components/ui/Container'
+
 
 type Program = {
   programName: string

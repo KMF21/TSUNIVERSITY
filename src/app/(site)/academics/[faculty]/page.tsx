@@ -2,10 +2,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
-import { client } from '../../../../sanity/client'
-import { FACULTY_BY_SLUG_QUERY } from '../../../../sanity/queries'
-import { urlFor } from '../../../../sanity/image'
-import { Container } from '../../../components/ui/Container'
+import { client } from '@/sanity/client'
+import { FACULTY_BY_SLUG_QUERY } from '@/sanity/queries'
+import { urlFor } from '@/sanity/image'
+import { Container } from '@/components/ui/Container'
 
 type FacultyPageProps = {
   params: Promise<{
