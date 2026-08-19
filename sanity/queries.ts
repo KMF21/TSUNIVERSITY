@@ -47,3 +47,7 @@ export const DEPARTMENT_BY_SLUG_QUERY = `*[_type == "department" && slug.current
 export const PAGE_BY_SLUG_QUERY = `*[_type == "page" && slug.current == $slug][0]{
   title, heroHeading, heroSubheading, heroImage, sections
 }`
+
+export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
+  heroImage, aboutImage
+}`

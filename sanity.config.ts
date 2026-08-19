@@ -10,14 +10,31 @@ export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 
-  // Mounted inside the Next.js app at /studio via NextStudio — this basePath
-  // must match the folder the catch-all route lives in.
   basePath: '/studio',
-
-  // Keeps Studio auto-updated to the latest v6.x release, no manual rebuilds.
   autoUpdates: true,
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            // Singleton: goes straight to the one Site Settings document,
+            // skipping the create-new / list view every other type gets.
+            S.listItem()
+              .title('Site Settings')
+              .id('siteSettings')
+              .child(
+                S.document()
+                  .schemaType('siteSettings')
+                  .documentId('siteSettings')
+              ),
+            S.divider(),
+            ...S.documentTypeListItems().filter((item) => item.getId() !== 'siteSettings'),
+          ]),
+    }),
+    visionTool(),
+  ],
 
   schema: {
     types: schemaTypes,

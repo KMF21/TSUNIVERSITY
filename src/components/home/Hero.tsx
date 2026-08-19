@@ -6,14 +6,20 @@ import { motion } from 'framer-motion'
 import { ShieldCheck } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { fadeInUp, scaleIn, staggerContainer, tapScale } from '@/lib/motion-variants'
+import { urlFor } from '../../../sanity/image'
 
 const STATS = [
   { value: '9', label: 'Faculties' },
   { value: '50+', label: 'Programs Offered' },
-  { value: '60+', label: 'Years of Excellence' },
+  { value: '10+', label: 'Years of Excellence' },
 ]
 
-export function Hero() {
+const FALLBACK_HERO_IMAGE =
+  'https://www.tsuniversity.edu.ng/wp-content/uploads/2014/10/GIT_1325-min-1024x731.jpg'
+
+export function Hero({ heroImage }: { heroImage?: any }) {
+  const imageSrc = heroImage ? urlFor(heroImage).width(1200).height(900).url() : FALLBACK_HERO_IMAGE
+  const imageAlt = heroImage?.alt || 'Taraba State University campus'
   return (
     <section className="bg-white py-16 sm:py-24">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
@@ -85,9 +91,11 @@ export function Hero() {
           {/* Temporary: real TSU campus photo hotlinked from the live site.
               Swap for a Sanity-hosted asset once TSU provides/re-uploads
               preferred photography — see next.config.js note. */}
+                    {/* Sourced from Sanity (Site Settings → Homepage Hero Image) once
+              uploaded; falls back to a hotlinked TSU photo until then. */}
           <Image
-            src="https://www.tsuniversity.edu.ng/wp-content/uploads/2014/10/GIT_1325-min-1024x731.jpg"
-            alt="Taraba State University campus"
+            src={imageSrc}
+            alt={imageAlt}
             fill
             priority
             className="object-cover"

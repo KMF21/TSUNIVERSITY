@@ -7,6 +7,8 @@ import { Container } from '../ui/Container'
 import { AnimateOnScroll } from '../motion/AnimateOnScroll'
 import { StaggerGroup, StaggerItem } from '../motion/StaggerGroup'
 import { fadeInUp, scaleIn } from '@/lib/motion-variants'
+import { urlFor } from '../../../sanity/image'
+
 
 const PILLARS = [
   {
@@ -20,8 +22,15 @@ const PILLARS = [
     body: 'To be a leading center of academic excellence in Nigeria, recognized for research, innovation, and producing graduates who shape the nation\'s future.',
   },
 ]
+// Fallback used only until a real image is uploaded via Sanity Studio
+// (Site Settings → "Who We Are" Section Image). Once aboutImage is set,
+// this hotlinked placeholder is never used.
+const FALLBACK_ABOUT_IMAGE =
+  'https://www.tsuniversity.edu.ng/wp-content/uploads/2022/05/GIT_1247-min-scaled-2000x441.jpg'
 
-export function AboutSection() {
+export function AboutSection({ aboutImage }: { aboutImage?: any }) {
+  const imageSrc = aboutImage ? urlFor(aboutImage).width(1000).height(1250).url() : FALLBACK_ABOUT_IMAGE
+  const imageAlt = aboutImage?.alt || 'Taraba State University campus building'
   return (
     <section className="py-16 sm:py-24">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
@@ -35,8 +44,8 @@ export function AboutSection() {
           {/* Temporary: real TSU campus photo hotlinked from the live site.
               Swap for a Sanity-hosted asset once available. */}
           <Image
-            src="https://www.tsuniversity.edu.ng/wp-content/uploads/2022/05/GIT_1247-min-scaled-2000x441.jpg"
-            alt="Taraba State University campus building"
+            src={imageSrc}
+            alt={imageAlt}
             fill
             className="object-cover"
           />
@@ -64,7 +73,7 @@ export function AboutSection() {
               Shaping Futures Through Knowledge &amp; Discovery
             </h2>
             <p className="mt-5 max-w-xl text-ink-muted">
-              For over six decades, Taraba State University has been a home for learners across
+              For over a decade, Taraba State University has been a home for learners across
               Nigeria and beyond, offering internationally recognized programs across nine
               faculties and a growing portfolio of research initiatives.
             </p>

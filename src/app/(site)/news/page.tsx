@@ -1,8 +1,9 @@
-import { client } from '../../../sanity/client'
-import { ALL_POSTS_QUERY } from '../../../sanity/queries'
-import { Container } from '../../components/ui/Container'
-import { SectionHeading } from '../../components/ui/SectionHeading'
-import { Card } from '../../components/ui/Card'
+import { Card } from "@/components/ui/Card"
+import { Container } from "@/components/ui/Container"
+import { SectionHeading } from "@/components/ui/SectionHeading"
+import { client } from "@/sanity/client"
+import { ALL_POSTS_QUERY } from "@/sanity/queries"
+
 
 type Post = {
   _id: string
