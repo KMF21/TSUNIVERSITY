@@ -47,7 +47,7 @@ export function Hero({ heroImage }: { heroImage?: any }) {
             className="mt-5 max-w-xl text-center text-ink-muted md:text-start"
           >
             Taraba State University offers internationally recognized undergraduate, postgraduate,
-            and distance learning programs across nine faculties.
+            and distance learning programs across ten faculties.
           </motion.p>
 
           <motion.div

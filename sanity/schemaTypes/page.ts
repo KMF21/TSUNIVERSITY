@@ -57,7 +57,7 @@ export default defineType({
           name: 'statBlock',
           title: 'Stat Block',
           fields: [
-            {name: 'value', title: 'Value', type: 'string', description: 'e.g. "96%", "60+"'},
+            {name: 'value', title: 'Value', type: 'string', description: 'e.g. "96%", "10+"'},
             {name: 'label', title: 'Label', type: 'string'},
           ],
         },

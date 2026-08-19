@@ -17,6 +17,7 @@ export function Footer() {
             <li><Link href="/news">News</Link></li>
             <li><Link href="/events">Events</Link></li>
             <li><Link href="/tetfund">TETFund</Link></li>
+            <li><Link href="/giving">Give</Link></li>
           </ul>
         </div>
         <div>

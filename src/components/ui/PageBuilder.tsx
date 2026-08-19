@@ -52,7 +52,7 @@ export function PageBuilder({
           }
           if (section._type === 'statBlock') {
             return (
-              <div key={i} className="inline-block rounded-card bg-crimson-50 px-6 py-4 text-center">
+              <div key={i} className="inline-block  bg-crimson-50 px-6 py-4 text-center">
                 <p className="font-display text-2xl font-bold text-crimson">{section.value}</p>
                 <p className="text-xs uppercase text-ink-muted">{section.label}</p>
               </div>

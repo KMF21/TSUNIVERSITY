@@ -58,7 +58,7 @@ export function AboutSection({ aboutImage }: { aboutImage?: any }) {
             transition={{ delay: 0.4 }}
             className="absolute bottom-6 left-6 rounded-card bg-crimson px-6 py-4 text-white shadow-lg"
           >
-            <p className="font-display text-3xl font-bold">60+</p>
+            <p className="font-display text-3xl font-bold">10+</p>
             <p className="text-md font-semibold uppercase tracking-wide">Years of Excellence</p>
           </motion.div>
         </motion.div>
@@ -74,7 +74,7 @@ export function AboutSection({ aboutImage }: { aboutImage?: any }) {
             </h2>
             <p className="mt-5 max-w-xl text-ink-muted">
               For over a decade, Taraba State University has been a home for learners across
-              Nigeria and beyond, offering internationally recognized programs across nine
+              Nigeria and beyond, offering internationally recognized programs across ten
               faculties and a growing portfolio of research initiatives.
             </p>
           </AnimateOnScroll>

@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 const TRACKS = [
   {
     title: 'Undergraduate Programmes',
-    description: 'Explore degree programs across nine faculties, from Engineering to Law.',
+    description: 'Explore degree programs across ten faculties, from Engineering to Law.',
     href: '/admissions/undergraduate',
   },
   {

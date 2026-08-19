@@ -1,8 +1,10 @@
-import { Container } from '../../components/ui/Container'
-import { SectionHeading } from '../../components/ui/SectionHeading'
 
 // These remain external links for v1 per the client's confirmed decision —
 // each is a separate system (payments, applications, etc.) that shouldn't
+
+import { Container } from "@/components/ui/Container"
+import { SectionHeading } from "@/components/ui/SectionHeading"
+
 // be folded into the main site's scope right now.
 const PORTALS = [
   { label: 'Undergraduate Portal', href: 'https://degportal.tsuniversity.edu.ng', description: 'Access your undergraduate student dashboard.' },

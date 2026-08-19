@@ -26,7 +26,7 @@ export async function FacultyGrid() {
           <SectionHeading
             eyebrow="Academics"
             title="Our Faculties"
-            subtitle="Nine faculties spanning the sciences, humanities, and professional disciplines."
+            subtitle="Ten faculties spanning the sciences, humanities, and professional disciplines."
           />
         </AnimateOnScroll>
 
