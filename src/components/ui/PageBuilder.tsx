@@ -23,7 +23,7 @@ export function PageBuilder({
 }) {
   return (
     <>
-      <section className="bg-rose-tint py-16 text-center">
+      <section className="bg-[#F7F9FC] py-16 text-center">
         <Container>
           <h1 className="font-display text-3xl font-bold text-navy sm:text-4xl">
             {page.heroHeading || page.title}

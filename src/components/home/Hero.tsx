@@ -9,7 +9,7 @@ import { fadeInUp, scaleIn, staggerContainer, tapScale } from '@/lib/motion-vari
 import { urlFor } from '../../../sanity/image'
 
 const STATS = [
-  { value: '9', label: 'Faculties' },
+  { value: '10', label: 'Faculties' },
   { value: '50+', label: 'Programs Offered' },
   { value: '10+', label: 'Years of Excellence' },
 ]
@@ -21,23 +21,24 @@ export function Hero({ heroImage }: { heroImage?: any }) {
   const imageSrc = heroImage ? urlFor(heroImage).width(1200).height(900).url() : FALLBACK_HERO_IMAGE
   const imageAlt = heroImage?.alt || 'Taraba State University campus'
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-16 sm:py-20">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer(0.12)}
+          className="flex flex-col items-center text-center lg:items-start lg:text-start"
         >
           <motion.span
             variants={fadeInUp}
-            className="inline-block rounded-full bg-crimson-50 px-4 py-1.5 text-md font-semibold text-crimson"
+            className=" rounded-full bg-crimson-50 px-4 py-2 text-md font-semibold text-crimson"
           >
             Premier Academic Institution
           </motion.span>
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-5 text-center font-display text-4xl font-bold text-navy sm:text-5xl md:text-start"
+            className="mt-5 text-center font-display text-3xl md:text-4xl font-bold text-navy  md:text-start"
           >
             Harnessing Nature&apos;s Gift, Shaping Tomorrow&apos;s Leaders
           </motion.h1>

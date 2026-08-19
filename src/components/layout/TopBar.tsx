@@ -20,15 +20,15 @@ export function TopBar() {
       initial="hidden"
       animate="visible"
       variants={fadeIn}
-      className="hidden bg-navy-900 text-white/90 lg:block"
+      className=" bg-navy-900 text-white/90 lg:block"
     >
-      <div className="mx-auto flex h-10 w-full max-w-7xl items-center justify-between px-6 text-md lg:px-8">
+      <div className="mx-auto flex h-10 w-full max-w-7xl items-center justify-center lg:justify-between px-6 text-md lg:px-8">
         <motion.a
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
           href="mailto:registrar@tsuniversity.edu.ng"
-          className="flex items-center gap-2 transition hover:text-white"
+          className="hidden lg:flex items-center gap-2 transition hover:text-white"
         >
           <Mail className="h-3.5 w-3.5" />
           <span>registrar@tsuniversity.edu.ng</span>

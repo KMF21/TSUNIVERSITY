@@ -17,15 +17,19 @@ export function Header() {
 
       <div className="bg-navy">
         <Container className="flex h-20 items-center justify-between">
-          <Link href="/">
+          <Link
+           className="flex items-center gap-3"
+           href="/">
             <Image
               src={logo}
               width={36}
               height={36}
               alt="Taraba State University"
             />
-          </Link>
+              <p className="text-white text-lg font-semibold visible lg:hidden ">Taraba State University</p>
        
+          </Link>
+        
 
           <nav className="hidden items-center gap-7 lg:flex">
             {NAV_LINKS.map((link) => (

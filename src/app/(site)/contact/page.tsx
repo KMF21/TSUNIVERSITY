@@ -1,6 +1,7 @@
-import { Container } from '../../components/ui/Container'
-import { SectionHeading } from '../../components/ui/SectionHeading'
-import { ContactForm } from '../../components/contact/ContactForm'
+import { ContactForm } from "@/components/contact/ContactForm"
+import { Container } from "@/components/ui/Container"
+import { SectionHeading } from "@/components/ui/SectionHeading"
+
 
 const INFO = [
   { label: 'Our Campus', value: 'ATC, 660213, Jalingo, Taraba State' },
