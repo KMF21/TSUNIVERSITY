@@ -1,8 +1,9 @@
-import { client } from '../../../sanity/client'
-import { ALL_EVENTS_QUERY } from '../../../sanity/queries'
-import { Container } from '../../components/ui/Container'
-import { SectionHeading } from '../../components/ui/SectionHeading'
-import { EventsFilterGrid } from '../../components/events/EventsFilterGrid'
+import { EventsFilterGrid } from "@/components/events/EventsFilterGrid"
+import { Container } from "@/components/ui/Container"
+import { SectionHeading } from "@/components/ui/SectionHeading"
+import { client } from "@/sanity/client"
+import { ALL_EVENTS_QUERY } from "@/sanity/queries"
+
 
 type Event = {
   _id: string
