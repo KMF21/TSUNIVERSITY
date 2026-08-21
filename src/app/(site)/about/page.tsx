@@ -1,13 +1,22 @@
 import { notFound } from 'next/navigation'
 
 import { PageBuilder } from '@/components/ui/PageBuilder'
-import { PAGE_BY_SLUG_QUERY } from '@/sanity/queries'
-import { client } from '@/sanity/client'
 
+import { PAGE_BY_SLUG_QUERY, LEADERSHIP_QUERY } from '@/sanity/queries'
+import { client } from '@/sanity/client'
+import { LeadershipSection } from './LeadershipSection'
 
 export default async function Page() {
-  const page = await client.fetch(PAGE_BY_SLUG_QUERY, { slug: 'about' })
+  const [page, leadership] = await Promise.all([
+    client.fetch(PAGE_BY_SLUG_QUERY, { slug: 'about' }),
+    client.fetch(LEADERSHIP_QUERY),
+  ])
   if (!page) notFound()
 
-  return <PageBuilder page={page} />
+  return (
+    <>
+      <PageBuilder page={page} />
+      <LeadershipSection profiles={leadership} />
+    </>
+  )
 }
