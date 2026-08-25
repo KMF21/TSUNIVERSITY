@@ -30,8 +30,15 @@ export const EVENT_BY_SLUG_QUERY = `*[_type == "event" && slug.current == $slug]
 }`
 
 export const ALL_FACULTIES_QUERY = `*[_type == "faculty"] | order(order asc){
-  _id, name, slug, heroImage, deanName,
-  "departmentCount": count(departments)
+  _id,
+  name,
+  slug,
+  heroImage,
+  deanName,
+  "departmentCount": count(*[
+    _type == "department" &&
+    faculty._ref == ^._id
+  ])
 }`
 
 export const FACULTY_BY_SLUG_QUERY = `*[_type == "faculty" && slug.current == $slug][0]{

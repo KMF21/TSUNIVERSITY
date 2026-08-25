@@ -7,7 +7,7 @@ import { fadeIn, fadeInUp, staggerContainer } from '@/lib/motion-variants'
 // TODO: swap in TSU's official social handles once provided — these are
 // placeholders so the bar renders correctly ahead of real links.
 const SOCIAL_LINKS = [
-  { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+  { icon: Facebook, href: 'https://www.facebook.com/www.tsuniversity.edu.ng', label: 'Facebook' },
   { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
   { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
   { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
