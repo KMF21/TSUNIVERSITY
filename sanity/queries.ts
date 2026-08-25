@@ -62,3 +62,74 @@ export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
 export const LEADERSHIP_QUERY = `*[_type == "leadershipProfile" && category in ["principal-officer", "governing-council", "dean", "hod"]] | order(order asc){
   _id, name, slug, role, category, photo
 }`
+
+
+export const TETFUND_INTERVENTIONS_QUERY = `
+  *[_type == "tetfundIntervention"]
+  | order(order asc, year desc, _createdAt desc) {
+    _id,
+    title,
+    category,
+    description,
+    mainImage {
+      ...,
+      alt
+    },
+    gallery[] {
+      ...,
+      alt,
+      caption
+    },
+    year,
+    location,
+    status,
+    featured,
+    order
+  }
+`
+
+export const FEATURED_TETFUND_INTERVENTIONS_QUERY = `
+  *[
+    _type == "tetfundIntervention" &&
+    featured == true
+  ]
+  | order(order asc, year desc, _createdAt desc)[0...3] {
+    _id,
+    title,
+    category,
+    description,
+    mainImage,
+    gallery,
+    year,
+    location,
+    status,
+    featured,
+    order
+  }
+`
+
+export const ACADEMIC_CATALOG_QUERY = `
+  *[_type == "faculty"] | order(order asc, name asc) {
+    _id,
+    name,
+    slug,
+    heroImage,
+
+    "departments": *[
+      _type == "department" &&
+      faculty._ref == ^._id
+    ] | order(name asc) {
+      _id,
+      name,
+      slug,
+      hodName,
+      description,
+
+      "programs": programsOffered[] {
+        programName,
+        level,
+        duration
+      }
+    }
+  }
+`

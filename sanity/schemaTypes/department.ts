@@ -44,7 +44,7 @@ export default defineType({
               title: 'Level',
               type: 'string',
               options: {
-                list: ['Diploma', "Bachelor's", "Master's", 'PhD'],
+                list: ['PGD', "Bachelor's", "Master's", 'PhD'],
               },
             },
             {name: 'duration', title: 'Duration', type: 'string'},

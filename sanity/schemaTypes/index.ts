@@ -5,5 +5,15 @@ import department from './department'
 import leadershipProfile from './leadershipProfile'
 import page from './page'
 import siteSettings from './siteSettings'
+import tetfundIntervention from './tetfundIntervention'
 
-export const schemaTypes = [post, event, faculty, department, leadershipProfile, page, siteSettings]
+export const schemaTypes = [
+  post,
+  event,
+  faculty,
+  department,
+  leadershipProfile,
+  page,
+  siteSettings,
+  tetfundIntervention,
+]
