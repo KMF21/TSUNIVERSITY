@@ -53,13 +53,13 @@ export function ContactForm() {
         required
         className="w-full rounded-lg border border-black/10 px-4 py-2.5 text-md"
       />
-      <button
+      {/* <button
         type="submit"
         disabled={isPending}
         className="rounded-full bg-crimson px-6 py-3 font-semibold text-white transition hover:bg-crimson-600 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isPending ? 'Sending…' : 'Submit Inquiry'}
-      </button>
+      </button> */}
     </form>
   )
 }
