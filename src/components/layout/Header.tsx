@@ -8,7 +8,6 @@ import { MobileNav } from './MobileNav'
 import { Container } from '../ui/Container'
 import { NAV_LINKS } from '@/lib/nav-links'
 import { slideInDown, tapScale } from '@/lib/motion-variants'
-import logo from "../../app/assets/tsu_logo1.png";
 
 export function Header() {
   return (
@@ -21,7 +20,7 @@ export function Header() {
            className="flex items-center gap-3"
            href="/">
             <Image
-              src={logo}
+              src="assets/tsu_logo1.png"
               width={36}
               height={36}
               alt="Taraba State University"
