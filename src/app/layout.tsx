@@ -13,8 +13,10 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+const siteUrl = 'https://www.tsuniversity.edu.ng'
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.tsuniversity.edu.ng'),
+  metadataBase: new URL(siteUrl),
 
   title: {
     default: 'Taraba State University, Jalingo',
@@ -69,17 +71,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NG',
-    url: 'https://www.tsuniversity.edu.ng/',
+    url: siteUrl,
     siteName: 'Taraba State University',
     title: 'Taraba State University, Jalingo',
     description:
       'Official website of Taraba State University, Jalingo. Explore academic programmes, admissions, research, university news, faculties, departments and student services.',
     images: [
       {
-        url: '/assets/tsu_logo1.png',
+        url: `${siteUrl}/assets/tsu_logo1.png`,
         width: 1200,
         height: 630,
-        alt: 'Taraba State University, Jalingo',
+        alt: 'Taraba State University, Jalingo Logo',
       },
     ],
   },
@@ -89,7 +91,7 @@ export const metadata: Metadata = {
     title: 'Taraba State University, Jalingo',
     description:
       'Official website of Taraba State University, Jalingo. Explore programmes, admissions, research, news and university information.',
-    images: ['/assets/tsu_logo1.png'],
+    images: [`${siteUrl}/assets/tsu_logo1.png`],
   },
 
   robots: {
@@ -107,9 +109,6 @@ export const metadata: Metadata = {
   category: 'education',
 }
 
-// Bare root layout — deliberately has NO Header/Footer.
-// Those live in (site)/layout.tsx instead, so /studio (a sibling
-// of the (site) route group) never inherits them.
 export default function RootLayout({
   children,
 }: {
