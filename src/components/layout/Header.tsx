@@ -20,7 +20,7 @@ export function Header() {
            className="flex items-center gap-3"
            href="/">
             <Image
-              src="assets/tsu_logo1.png"
+              src="/assets/tsu_logo1.png"
               width={36}
               height={36}
               alt="Taraba State University"

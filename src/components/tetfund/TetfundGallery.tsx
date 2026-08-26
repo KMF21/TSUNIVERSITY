@@ -513,7 +513,7 @@ function InterventionModal({
             PROJECT INFORMATION
         =========================================================== */}
 
-        <div className="overflow-y-auto bg-background p-5 sm:p-8">
+        <div className="overflow-y-auto bg-background p-5 sm:p-8 text-white">
           {/* Caption */}
           {currentImage?.caption && (
             <p className="mb-5 text-sm italic leading-6 text-muted-foreground">
@@ -522,8 +522,8 @@ function InterventionModal({
           )}
 
           {/* Meta */}
-          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <span className="font-semibold text-primary">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground ">
+            <span className="font-semibold text-white">
               {CATEGORY_LABELS[intervention.category] ||
                 intervention.category}
             </span>
