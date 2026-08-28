@@ -74,7 +74,7 @@ export function Hero({ heroImage }: { heroImage?: any }) {
             </motion.div>
             <motion.div {...tapScale}>
               <Link
-                href="/campuses/main"
+                href="/campuses"
                 className="inline-flex rounded-full border border-navy/20 px-6 py-3 font-semibold text-navy transition hover:bg-navy hover:text-white"
               >
                 Explore Campuses
