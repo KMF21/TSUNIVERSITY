@@ -58,7 +58,7 @@ export function Footer() {
       <div className="border-t border-white/10 py-6 text-center text-xs text-white/50">
         © {new Date().getFullYear()} Taraba State University. All rights
         reserved.
-        <p className="text-sm text-tsu-text-muted">
+        {/* <p className="text-sm text-tsu-text-muted">
           <a
             href="https://www.kmfenterprise.ng"
             target="_blank"
@@ -67,7 +67,7 @@ export function Footer() {
           >
             Built and Maintained by KMFenterprise
           </a>
-        </p>
+        </p> */}
       </div>
     </footer>
   );
