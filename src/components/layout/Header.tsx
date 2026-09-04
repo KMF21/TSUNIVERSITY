@@ -45,7 +45,7 @@ export function Header() {
 
           <motion.div {...tapScale} className="hidden lg:block">
             <Link
-              href="https://apply.tsuniversity.edu.ng/apply"
+              href="/admissions"
               className="inline-flex items-center rounded-full bg-crimson px-5 py-2.5 text-md font-semibold text-white transition hover:bg-crimson-600"
             >
               Apply Now

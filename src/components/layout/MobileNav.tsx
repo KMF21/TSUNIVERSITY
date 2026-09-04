@@ -85,7 +85,7 @@ export function MobileNav() {
                 <motion.li variants={fadeInUp} className="pt-4">
                   <motion.div {...tapScale}>
                     <Link
-                      href="https://apply.tsuniversity.edu.ng/apply"
+                      href="/admissions"
                       onClick={() => setOpen(false)}
                       className="block rounded-full bg-crimson px-5 py-3 text-center font-semibold text-white transition hover:bg-crimson-600"
                     >
