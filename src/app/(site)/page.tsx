@@ -1,4 +1,4 @@
-import { client } from '../../../sanity/client'
+import { sanityFetch } from '../../../sanity/live'
 import { SITE_SETTINGS_QUERY } from '../../../sanity/queries'
 import { Hero } from '../../components/home/Hero'
 import { AboutSection } from '../../components/home/AboutSection'
@@ -10,7 +10,7 @@ import { PortalsTeaser } from '../../components/home/PortalsTeaser'
 import { CtaBanner } from '../../components/home/CtaBanner'
 
 export default async function HomePage() {
-  const siteSettings = await client.fetch(SITE_SETTINGS_QUERY)
+  const siteSettings = (await sanityFetch({ query: SITE_SETTINGS_QUERY })).data
 
   return (
     <>

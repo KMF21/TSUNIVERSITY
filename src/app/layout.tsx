@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Sora, Inter } from 'next/font/google'
 import { MotionProvider } from '../components/motion/MotionProvider'
+import { SanityLive } from '../../sanity/live'
 import './globals.css'
 
 const sora = Sora({
@@ -118,6 +119,7 @@ export default function RootLayout({
     <html lang="en" className={`${sora.variable} ${inter.variable}`}>
       <body className="font-body text-ink">
         <MotionProvider>{children}</MotionProvider>
+        <SanityLive />
       </body>
     </html>
   )

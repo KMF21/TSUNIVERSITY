@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { DEPARTMENT_BY_SLUG_QUERY } from '@/sanity/queries'
 import { Container } from '@/components/ui/Container'
 
@@ -23,10 +23,10 @@ export default async function DepartmentPage({
 }: DepartmentPageProps) {
   const { faculty, department: departmentSlug } = await params
 
-  const department = await client.fetch(DEPARTMENT_BY_SLUG_QUERY, {
+  const department = (await sanityFetch({ query: DEPARTMENT_BY_SLUG_QUERY, params: {
     slug: departmentSlug,
     facultySlug: faculty,
-  })
+  } })).data
 
   if (!department) {
     notFound()

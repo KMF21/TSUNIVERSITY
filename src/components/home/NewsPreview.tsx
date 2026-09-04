@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { client } from '../../../sanity/client'
+import { sanityFetch } from '../../../sanity/live'
 import { FEATURED_POSTS_QUERY } from '../../../sanity/queries'
 import { Container } from '../ui/Container'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -19,7 +19,7 @@ type Post = {
 }
 
 export async function NewsPreview() {
-  const posts: Post[] = await client.fetch(FEATURED_POSTS_QUERY)
+  const posts: Post[] = (await sanityFetch({ query: FEATURED_POSTS_QUERY })).data
 
   return (
     <section className="py-16">

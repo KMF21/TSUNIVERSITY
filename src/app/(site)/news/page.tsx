@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/Card"
 import { Container } from "@/components/ui/Container"
 import { SectionHeading } from "@/components/ui/SectionHeading"
-import { client } from "@/sanity/client"
+import { sanityFetch } from "@/sanity/live"
 import { ALL_POSTS_QUERY } from "@/sanity/queries"
 
 
@@ -16,7 +16,7 @@ type Post = {
 }
 
 export default async function NewsPage() {
-  const posts: Post[] = await client.fetch(ALL_POSTS_QUERY)
+  const posts: Post[] = (await sanityFetch({ query: ALL_POSTS_QUERY })).data
 
   return (
     <Container className="py-16">

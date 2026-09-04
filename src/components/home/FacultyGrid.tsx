@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '../../../sanity/client'
+import { sanityFetch } from '../../../sanity/live'
 import { ALL_FACULTIES_QUERY } from '../../../sanity/queries'
 import { urlFor } from '../../../sanity/image'
 import { Container } from '../ui/Container'
@@ -17,7 +17,7 @@ type Faculty = {
 }
 
 export async function FacultyGrid() {
-  const faculties: Faculty[] = await client.fetch(ALL_FACULTIES_QUERY)
+  const faculties: Faculty[] = (await sanityFetch({ query: ALL_FACULTIES_QUERY })).data
 
   return (
     <section className="bg-rose-tint py-16">

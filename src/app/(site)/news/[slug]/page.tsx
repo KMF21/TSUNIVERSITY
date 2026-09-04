@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { POST_BY_SLUG_QUERY } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import { Container } from '@/components/ui/Container'
@@ -17,9 +17,9 @@ export default async function PostPage({
 }: PostPageProps) {
   const { slug } = await params
 
-  const post = await client.fetch(POST_BY_SLUG_QUERY, {
+  const post = (await sanityFetch({ query: POST_BY_SLUG_QUERY, params: {
     slug,
-  })
+  } })).data
 
   if (!post) {
     notFound()

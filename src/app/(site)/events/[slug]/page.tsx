@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container'
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { urlFor } from '@/sanity/image'
 import { EVENT_BY_SLUG_QUERY } from '@/sanity/queries'
 import Image from 'next/image'
@@ -17,9 +17,9 @@ export default async function EventPage({
 }: EventPageProps) {
   const { slug } = await params
 
-  const event = await client.fetch(EVENT_BY_SLUG_QUERY, {
+  const event = (await sanityFetch({ query: EVENT_BY_SLUG_QUERY, params: {
     slug,
-  })
+  } })).data
 
   if (!event) {
     notFound()

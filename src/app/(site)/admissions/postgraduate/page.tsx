@@ -1,13 +1,11 @@
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { ACADEMIC_CATALOG_QUERY } from '@/sanity/queries'
 
 import { Container } from '@/components/ui/Container'
 import { AcademicCatalogue } from '@/components/academics/AcademicCatalogue'
 
 export default async function PostgraduatePage() {
-  const faculties = await client.fetch(
-    ACADEMIC_CATALOG_QUERY
-  )
+  const faculties = (await sanityFetch({ query: ACADEMIC_CATALOG_QUERY })).data
 
   return (
     <>

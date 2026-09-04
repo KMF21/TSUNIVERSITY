@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { ALL_FACULTIES_QUERY } from '@/sanity/queries'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -21,7 +21,7 @@ type Faculty = {
 }
 
 export default async function AcademicsPage() {
-  const faculties: Faculty[] = await client.fetch(ALL_FACULTIES_QUERY)
+  const faculties: Faculty[] = (await sanityFetch({ query: ALL_FACULTIES_QUERY })).data
 
   return (
     <Container className="py-16">

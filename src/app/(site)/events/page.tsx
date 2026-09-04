@@ -1,7 +1,7 @@
 import { EventsFilterGrid } from "@/components/events/EventsFilterGrid"
 import { Container } from "@/components/ui/Container"
 import { SectionHeading } from "@/components/ui/SectionHeading"
-import { client } from "@/sanity/client"
+import { sanityFetch } from "@/sanity/live"
 import { ALL_EVENTS_QUERY } from "@/sanity/queries"
 
 
@@ -20,7 +20,7 @@ type Event = {
 // itself needs to be client-side, so we hand the fetched list off to
 // EventsFilterGrid rather than making the whole page a client component.
 export default async function EventsPage() {
-  const events: Event[] = await client.fetch(ALL_EVENTS_QUERY)
+  const events: Event[] = (await sanityFetch({ query: ALL_EVENTS_QUERY })).data
 
   return (
     <Container className="py-16">

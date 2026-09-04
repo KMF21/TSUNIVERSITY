@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { FACULTY_BY_SLUG_QUERY } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import { Container } from '@/components/ui/Container'
@@ -18,9 +18,9 @@ export default async function FacultyPage({
 }: FacultyPageProps) {
   const { faculty: facultySlug } = await params
 
-  const faculty = await client.fetch(FACULTY_BY_SLUG_QUERY, {
+  const faculty = (await sanityFetch({ query: FACULTY_BY_SLUG_QUERY, params: {
     slug: facultySlug,
-  })
+  } })).data
 
   if (!faculty) {
     notFound()

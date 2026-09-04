@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { client } from '../../../sanity/client'
+import { sanityFetch } from '../../../sanity/live'
 import { UPCOMING_EVENTS_QUERY } from '../../../sanity/queries'
 import { Container } from '../ui/Container'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -19,7 +19,7 @@ type Event = {
 }
 
 export async function EventsPreview() {
-  const events: Event[] = await client.fetch(UPCOMING_EVENTS_QUERY)
+  const events: Event[] = (await sanityFetch({ query: UPCOMING_EVENTS_QUERY })).data
 
   return (
     <section className="bg-rose-tint py-16">

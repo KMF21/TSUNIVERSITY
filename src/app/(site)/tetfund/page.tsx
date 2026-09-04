@@ -2,7 +2,7 @@ import { Accordion } from '@/components/ui/Accordion'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { TetfundGallery } from '@/components/tetfund/TetfundGallery'
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import {
   PAGE_BY_SLUG_QUERY,
   TETFUND_INTERVENTIONS_QUERY,
@@ -34,8 +34,8 @@ const ANNUAL_INTERVENTION = [
 
 export default async function TetfundPage() {
   const [page, interventions] = await Promise.all([
-    client.fetch(PAGE_BY_SLUG_QUERY, { slug: 'tetfund' }),
-    client.fetch(TETFUND_INTERVENTIONS_QUERY),
+    (await sanityFetch({ query: PAGE_BY_SLUG_QUERY, params: { slug: 'tetfund' } })).data,
+    (await sanityFetch({ query: TETFUND_INTERVENTIONS_QUERY })).data,
   ])
 
   return (

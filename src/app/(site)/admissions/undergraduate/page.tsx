@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { client } from '@/sanity/client'
+import { sanityFetch } from '@/sanity/live'
 import { ACADEMIC_CATALOG_QUERY } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 
@@ -13,9 +13,7 @@ type Props = {
 }
 
 export default async function UndergraduatePage() {
-  const faculties: Props['faculties'] = await client.fetch(
-    ACADEMIC_CATALOG_QUERY
-  )
+  const faculties: Props['faculties'] = (await sanityFetch({ query: ACADEMIC_CATALOG_QUERY })).data
 
   return (
     <>
