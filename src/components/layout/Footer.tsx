@@ -23,6 +23,9 @@ export function Footer() {
               <Link href="/academics">Academics</Link>
             </li>
             <li>
+              <Link href="/research">Research</Link>
+            </li>
+            <li>
               <Link href="/news">News</Link>
             </li>
             <li>
