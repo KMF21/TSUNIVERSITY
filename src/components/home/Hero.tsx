@@ -9,9 +9,9 @@ import { fadeInUp, scaleIn, staggerContainer, tapScale } from '@/lib/motion-vari
 import { urlFor } from '../../../sanity/image'
 
 const STATS = [
-  { value: '10', label: 'Faculties' },
+  { value: '12', label: 'Faculties' },
   { value: '50+', label: 'Programs Offered' },
-  { value: '10+', label: 'Years of Excellence' },
+  { value: '15+', label: 'Years of Excellence' },
 ]
 
 const FALLBACK_HERO_IMAGE =
