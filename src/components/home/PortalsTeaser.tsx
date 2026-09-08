@@ -15,6 +15,9 @@ const PORTALS = [
   { label: 'Distance Learning', href: 'https://dlc.tsuniversity.edu.ng' },
   { label: 'Application', href: 'https://application.tsuniversity.edu.ng' },
   { label: 'Payments', href: 'https://payments.tsuniversity.edu.ng' },
+  { label: 'Apply Now', href: 'https://apply.tsuniversity.edu.ng/' },
+  { label: 'PG Application', href: 'https://pgapp.tsuniversity.edu.ng/auth/login' },
+  { label: 'Result Checker', href: 'http://resultchecker.tsuniversity.edu.ng/' },
 ]
 
 export function PortalsTeaser() {
