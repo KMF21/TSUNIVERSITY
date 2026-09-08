@@ -58,7 +58,7 @@ export function AboutSection({ aboutImage }: { aboutImage?: any }) {
             transition={{ delay: 0.4 }}
             className="absolute bottom-6 left-6 rounded-card bg-crimson px-6 py-4 text-white shadow-lg"
           >
-            <p className="font-display text-3xl font-bold">10+</p>
+            <p className="font-display text-3xl font-bold">15+</p>
             <p className="text-md font-semibold uppercase tracking-wide">Years of Excellence</p>
           </motion.div>
         </motion.div>
