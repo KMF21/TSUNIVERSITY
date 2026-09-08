@@ -10,7 +10,7 @@ import { urlFor } from '../../../sanity/image'
 
 const STATS = [
   { value: '12', label: 'Faculties' },
-  { value: '50+', label: 'Programs Offered' },
+  { value: '90+', label: 'Programs Offered' },
   { value: '15+', label: 'Years of Excellence' },
 ]
 
