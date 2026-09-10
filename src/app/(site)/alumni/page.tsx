@@ -1,4 +1,4 @@
-import { PageBuilder } from '@/components/ui/PageBuilder'
+import { PageBuilder } from '../../../../scripts/PageBuilder'
 import { sanityFetch } from '@/sanity/live'
 import { PAGE_BY_SLUG_QUERY } from '@/sanity/queries'
 import { notFound } from 'next/navigation'

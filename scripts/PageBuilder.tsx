@@ -2,10 +2,9 @@ import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import { CheckCircle2 } from 'lucide-react'
 
-
-import { Accordion } from './Accordion'
-import { Container } from './Container'
-import { urlFor } from '@/sanity/image'
+import { urlFor } from '../sanity/image'
+import { Accordion } from '../src/components/ui/Accordion'
+import { Container } from '../src/components/ui/Container'
 
 type Section =
   | {
