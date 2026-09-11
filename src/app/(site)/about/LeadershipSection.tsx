@@ -23,25 +23,37 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 const CATEGORY_ORDER = ['principal-officer', 'governing-council', 'dean', 'hod']
 
+const CATEGORY_TITLES: Record<string, string> = {
+  'principal-officer': 'Principal Officer',
+  'governing-council': 'Governing Council',
+  dean: 'Dean',
+  hod: 'Head of Department',
+}
+
 function ProfileCard({ profile }: { profile: LeadershipProfile }) {
   return (
-    <div className="flex flex-col items-center rounded-card border border-black/5 bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative h-24 w-24 overflow-hidden rounded-full bg-navy/10">
+    <div className="overflow-hidden rounded-card border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+      <div className="relative aspect-[4/5] w-full bg-navy/10">
         {profile.photo ? (
           <Image
-            src={urlFor(profile.photo).width(200).height(200).url()}
+            src={urlFor(profile.photo).width(500).height(625).url()}
             alt={profile.name}
             fill
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center font-display text-xl font-bold text-navy/40">
+          <div className="flex h-full w-full items-center justify-center font-display text-4xl font-bold text-navy/40">
             {profile.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
           </div>
         )}
       </div>
-      <p className="mt-4 font-display text-base font-semibold text-navy">{profile.name}</p>
-      <p className="mt-1 text-sm text-ink-muted">{profile.role}</p>
+      <div className="p-5">
+        <p className="font-display text-base font-semibold text-navy">{profile.name}</p>
+        <p className="mt-1 text-sm font-medium text-crimson">{profile.role}</p>
+        <p className="mt-1 text-xs uppercase tracking-wide text-ink-muted">
+          {CATEGORY_TITLES[profile.category]}
+        </p>
+      </div>
     </div>
   )
 }
@@ -74,7 +86,7 @@ export function LeadershipSection({ profiles }: { profiles: LeadershipProfile[] 
                   {group.label}
                 </h3>
               </AnimateOnScroll>
-              <StaggerGroup className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" staggerDelay={0.06}>
+              <StaggerGroup className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4" staggerDelay={0.06}>
                 {group.people.map((person) => (
                   <StaggerItem key={person._id}>
                     <ProfileCard profile={person} />
