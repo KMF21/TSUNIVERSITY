@@ -1,11 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import { HomeIcon } from '@sanity/icons/Home'
 
 export default defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
-  icon: HomeIcon,
+
   description:
     'Single shared document for homepage-only imagery (Hero, "Who We Are") — there is only ever one of these.',
   fields: [
