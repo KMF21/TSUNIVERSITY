@@ -23,25 +23,25 @@ function StaffCard({ staff }: { staff: StaffMember }) {
       href={`/staff-directory/${staff.slug.current}`}
       className="block overflow-hidden rounded-card border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
     >
-      <div className="relative aspect-[4/5] w-full bg-navy/10">
+      <div className="relative aspect-square w-full bg-navy/10">
         {staff.photo ? (
           <Image
-            src={urlFor(staff.photo).width(500).height(625).url()}
+            src={urlFor(staff.photo).width(300).height(300).url()}
             alt={staff.name}
             fill
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center font-display text-4xl font-bold text-navy/40">
+          <div className="flex h-full w-full items-center justify-center font-display text-2xl font-bold text-navy/40">
             {staff.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
           </div>
         )}
       </div>
-      <div className="p-5">
-        <p className="font-display text-base font-semibold text-navy">{staff.name}</p>
-        <p className="mt-1 text-sm font-medium text-crimson">{staff.title}</p>
+      <div className="p-3">
+        <p className="truncate font-display text-sm font-semibold text-navy">{staff.name}</p>
+        <p className="mt-0.5 truncate text-xs font-medium text-crimson">{staff.title}</p>
         {staff.department && (
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink-muted">{staff.department.name}</p>
+          <p className="mt-0.5 truncate text-xs text-ink-muted">{staff.department.name}</p>
         )}
       </div>
     </Link>
@@ -112,7 +112,7 @@ export function StaffDirectoryGrid({ staff }: { staff: StaffMember[] }) {
       {filtered.length === 0 ? (
         <p className="mt-10 text-center text-ink-muted">No staff match your search.</p>
       ) : (
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
           {filtered.map((staff) => (
             <StaffCard key={staff._id} staff={staff} />
           ))}

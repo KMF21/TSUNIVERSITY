@@ -51,10 +51,10 @@ export function MobileNav() {
               animate="visible"
               exit="exit"
               variants={slideInRight}
-              className="fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-navy text-white shadow-xl"
+              className="fixed right-0 top-0 z-50 flex h-full w-80 max-w-[85vw] flex-col bg-navy text-white shadow-xl"
               aria-hidden={!open}
             >
-              <div className="flex items-center justify-between border-b border-white/10 p-6">
+              <div className="flex shrink-0 items-center justify-between border-b border-white/10 p-6">
                 <span className="font-display text-lg font-bold">Menu</span>
                 <motion.button
                   whileTap={{ scale: 0.9, rotate: 90 }}
@@ -70,7 +70,7 @@ export function MobileNav() {
                 initial="hidden"
                 animate="visible"
                 variants={staggerContainer(0.05)}
-                className="flex flex-col gap-1 p-6"
+                className="flex flex-1 flex-col gap-1 overflow-y-auto p-6"
               >
                 <motion.li variants={fadeInUp}>
                   <Link
