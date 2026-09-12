@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown, Search } from 'lucide-react'
 import { fadeIn, slideInRight, staggerContainer, fadeInUp, tapScale } from '@/lib/motion-variants'
 import { NAV_LINKS } from '@/lib/nav-links'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
+  const [expandedGroup, setExpandedGroup] = useState<string | null>(null)
 
   // Lock background scroll while the drawer is open
   useEffect(() => {
@@ -71,17 +72,63 @@ export function MobileNav() {
                 variants={staggerContainer(0.05)}
                 className="flex flex-col gap-1 p-6"
               >
-                {NAV_LINKS.map((link) => (
-                  <motion.li key={link.href} variants={fadeInUp}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block rounded-lg px-3 py-3 text-base font-medium text-white/90 transition hover:bg-white/10"
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.li>
-                ))}
+                <motion.li variants={fadeInUp}>
+                  <Link
+                    href="/search"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-white/90 transition hover:bg-white/10"
+                  >
+                    <Search className="h-4 w-4" />
+                    Search
+                  </Link>
+                </motion.li>
+                {NAV_LINKS.map((link) =>
+                  'href' in link ? (
+                    <motion.li key={link.href} variants={fadeInUp}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-3 py-3 text-base font-medium text-white/90 transition hover:bg-white/10"
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.li>
+                  ) : (
+                    <motion.li key={link.label} variants={fadeInUp}>
+                      <button
+                        onClick={() => setExpandedGroup(expandedGroup === link.label ? null : link.label)}
+                        aria-expanded={expandedGroup === link.label}
+                        className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-white/90 transition hover:bg-white/10"
+                      >
+                        {link.label}
+                        <ChevronDown
+                          className={`h-4 w-4 transition ${expandedGroup === link.label ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {expandedGroup === link.label && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden pl-3"
+                          >
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                onClick={() => setOpen(false)}
+                                className="block rounded-lg px-3 py-2.5 text-base text-white/75 transition hover:bg-white/10 hover:text-white"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.li>
+                  )
+                )}
                 <motion.li variants={fadeInUp} className="pt-4">
                   <motion.div {...tapScale}>
                     <Link

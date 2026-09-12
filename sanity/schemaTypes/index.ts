@@ -6,6 +6,8 @@ import leadershipProfile from './leadershipProfile'
 import page from './page'
 import siteSettings from './siteSettings'
 import tetfundIntervention from './tetfundIntervention'
+import studentLifeCategory from './studentLifeCategory'
+import academicCalendarEntry from './academicCalendarEntry'
 
 export const schemaTypes = [
   post,
@@ -16,4 +18,6 @@ export const schemaTypes = [
   page,
   siteSettings,
   tetfundIntervention,
+  studentLifeCategory,
+  academicCalendarEntry,
 ]

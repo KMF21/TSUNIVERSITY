@@ -2,17 +2,37 @@
 // Single source of truth for primary navigation — used by both the desktop
 // nav in Header.tsx and the mobile drawer in MobileNav.tsx, so the two
 // never drift out of sync.
-export const NAV_LINKS = [
+//
+// A NavItem is either a direct link, or a group with a dropdown (desktop)
+// / expandable section (mobile). Kept flat at 6 top-level links + 2 groups
+// so the header doesn't get overcrowded as more sections get added.
+export type NavItem =
+  | { label: string; href: string }
+  | { label: string; children: { label: string; href: string }[] }
+
+export const NAV_LINKS: NavItem[] = [
   { label: 'About', href: '/about' },
   { label: 'Academics', href: '/academics' },
   { label: 'Admissions', href: '/admissions' },
-  // { label: 'Research', href: '/research' },
-  { label: 'Campuses', href: '/campuses' },
-  { label: 'Library', href: '/library' },
-  { label: 'Portals', href: '/portals' },
   { label: 'News', href: '/news' },
-  { label: 'TETFund', href: '/tetfund' },
   { label: 'Events', href: '/events' },
-  { label: 'Alumni', href: '/alumni' },
+  {
+    label: 'Campus Life',
+    children: [
+      { label: 'Student Life', href: '/student-life' },
+      { label: 'Alumni', href: '/alumni' },
+      { label: 'Campuses', href: '/campuses' },
+    ],
+  },
+  {
+    label: 'Resources',
+    children: [
+      { label: 'Academic Calendar', href: '/academic-calendar' },
+      { label: 'Library', href: '/library' },
+      { label: 'Portals', href: '/portals' },
+      { label: 'TETFund', href: '/tetfund' },
+      { label: 'FAQ', href: '/faq' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
-] as const
+]

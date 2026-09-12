@@ -62,10 +62,23 @@ export default defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Cover Image',
       type: 'image',
       options: {hotspot: true},
       fields: [{name: 'alt', title: 'Alt text', type: 'string'}],
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Photo Gallery',
+      description: 'Additional photos for past-event highlights — the Cover Image above is used as the thumbnail everywhere else',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {hotspot: true},
+          fields: [{name: 'alt', title: 'Alt text', type: 'string'}],
+        },
+      ],
     }),
     defineField({
       name: 'featured',

@@ -60,7 +60,10 @@ export function Footer() {
       </Container>
       <div className="border-t border-white/10 py-6 text-center text-xs text-white/50">
         © {new Date().getFullYear()} Taraba State University. All rights
-        reserved.
+        reserved. ·{" "}
+        <Link href="/privacy-policy" className="hover:text-white/80 hover:underline">
+          Privacy Policy
+        </Link>
         {/* <p className="text-sm text-tsu-text-muted">
           <a
             href="https://www.kmfenterprise.ng"

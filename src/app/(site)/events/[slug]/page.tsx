@@ -61,6 +61,24 @@ export default async function EventPage({
         </p>
       )}
 
+      {event.gallery && event.gallery.length > 0 && (
+        <div className="mt-10">
+          <h2 className="font-display text-lg font-semibold text-navy">Photo Highlights</h2>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {event.gallery.map((photo: any, i: number) => (
+              <div key={i} className="relative aspect-square overflow-hidden rounded-card">
+                <Image
+                  src={urlFor(photo).width(500).height(500).url()}
+                  alt={photo.alt || `${event.title} photo ${i + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {event.registrationUrl && (
         <a
           href={event.registrationUrl}

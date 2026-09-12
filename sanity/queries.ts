@@ -21,12 +21,45 @@ export const UPCOMING_EVENTS_QUERY = `*[_type == "event" && startDateTime > now(
   _id, title, slug, eventType, startDateTime, location, capacity, summary, image
 }`
 
-export const ALL_EVENTS_QUERY = `*[_type == "event"] | order(startDateTime asc){
+export const ALL_UPCOMING_EVENTS_QUERY = `*[_type == "event" && startDateTime > now()] | order(startDateTime asc){
+  _id, title, slug, eventType, startDateTime, location, capacity, summary, image, featured
+}`
+
+// Past events power the "highlights" showcase — most recent first, since
+// that's what a visitor scrolling through past events actually wants to see.
+export const PAST_EVENTS_QUERY = `*[_type == "event" && startDateTime <= now()] | order(startDateTime desc){
   _id, title, slug, eventType, startDateTime, location, capacity, summary, image, featured
 }`
 
 export const EVENT_BY_SLUG_QUERY = `*[_type == "event" && slug.current == $slug][0]{
-  _id, title, eventType, startDateTime, endDateTime, location, capacity, summary, image, registrationUrl
+  _id, title, eventType, startDateTime, endDateTime, location, capacity, summary, image, gallery, registrationUrl
+}`
+
+export const STUDENT_LIFE_QUERY = `*[_type == "studentLifeCategory"] | order(order asc){
+  _id, name, slug, category, coverImage, summary, description
+}`
+
+export const ACADEMIC_CALENDAR_QUERY = `*[_type == "academicCalendarEntry"] | order(startDate asc){
+  _id, title, session, semester, category, startDate, endDate, isPlaceholder
+}`
+
+// Cross-content search. Each type has different field names for its
+// "title" and "excerpt" — coalesce() picks whichever one that type has.
+// facultySlug is only meaningful for departments, used to build their href.
+export const SEARCH_QUERY = `*[
+  _type in ["page", "post", "event", "faculty", "department", "studentLifeCategory"] &&
+  (
+    title match $q + "*" ||
+    name match $q + "*" ||
+    excerpt match $q + "*" ||
+    summary match $q + "*"
+  )
+][0...30]{
+  _type,
+  "title": coalesce(title, name),
+  "slug": slug.current,
+  "excerpt": coalesce(excerpt, summary, heroSubheading),
+  "facultySlug": faculty->slug.current
 }`
 
 export const ALL_FACULTIES_QUERY = `*[_type == "faculty"] | order(order asc){
