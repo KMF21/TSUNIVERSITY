@@ -47,19 +47,30 @@ export const ACADEMIC_CALENDAR_QUERY = `*[_type == "academicCalendarEntry"] | or
 // "title" and "excerpt" — coalesce() picks whichever one that type has.
 // facultySlug is only meaningful for departments, used to build their href.
 export const SEARCH_QUERY = `*[
-  _type in ["page", "post", "event", "faculty", "department", "studentLifeCategory"] &&
+  _type in ["page", "post", "event", "faculty", "department", "studentLifeCategory", "staffMember"] &&
   (
     title match $q + "*" ||
     name match $q + "*" ||
     excerpt match $q + "*" ||
-    summary match $q + "*"
+    summary match $q + "*" ||
+    specialization match $q + "*"
   )
 ][0...30]{
   _type,
   "title": coalesce(title, name),
   "slug": slug.current,
-  "excerpt": coalesce(excerpt, summary, heroSubheading),
+  "excerpt": coalesce(excerpt, summary, heroSubheading, specialization),
   "facultySlug": faculty->slug.current
+}`
+
+export const STAFF_DIRECTORY_QUERY = `*[_type == "staffMember"] | order(department->name asc, order asc, name asc){
+  _id, name, slug, title, staffType, photo, specialization,
+  "department": department->{name, slug, "facultySlug": faculty->slug.current}
+}`
+
+export const STAFF_MEMBER_BY_SLUG_QUERY = `*[_type == "staffMember" && slug.current == $slug][0]{
+  _id, name, title, staffType, photo, email, officeLocation, qualifications, specialization, bio,
+  "department": department->{name, slug, "facultySlug": faculty->slug.current}
 }`
 
 export const ALL_FACULTIES_QUERY = `*[_type == "faculty"] | order(order asc){

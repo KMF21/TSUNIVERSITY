@@ -6,7 +6,7 @@ import { sanityFetch } from '@/sanity/live'
 import { SEARCH_QUERY } from '@/sanity/queries'
 
 type SearchResult = {
-  _type: 'page' | 'post' | 'event' | 'faculty' | 'department' | 'studentLifeCategory'
+  _type: 'page' | 'post' | 'event' | 'faculty' | 'department' | 'studentLifeCategory' | 'staffMember'
   title: string
   slug: string
   excerpt?: string
@@ -20,6 +20,7 @@ const TYPE_LABELS: Record<SearchResult['_type'], string> = {
   faculty: 'Faculty',
   department: 'Department',
   studentLifeCategory: 'Student Life',
+  staffMember: 'Staff',
 }
 
 function hrefFor(result: SearchResult): string {
@@ -37,6 +38,8 @@ function hrefFor(result: SearchResult): string {
     case 'studentLifeCategory':
       // No individual detail route exists yet — link through to the hub.
       return `/student-life`
+    case 'staffMember':
+      return `/staff-directory/${result.slug}`
     default:
       return '/'
   }

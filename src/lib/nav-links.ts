@@ -32,6 +32,7 @@ export const NAV_LINKS: NavItem[] = [
       { label: 'Portals', href: '/portals' },
       { label: 'TETFund', href: '/tetfund' },
       { label: 'FAQ', href: '/faq' },
+      { label: 'Staff Directory', href: '/staff-directory' },
     ],
   },
   { label: 'Contact', href: '/contact' },
