@@ -11,7 +11,13 @@ export type NavItem =
   | { label: string; children: { label: string; href: string }[] }
 
 export const NAV_LINKS: NavItem[] = [
-  { label: 'About', href: '/about' },
+  {
+    label: 'About',
+    children: [
+      { label: 'About TSU', href: '/about' },
+      { label: 'Rankings & Recognition', href: '/rankings' },
+    ],
+  },
   { label: 'Academics', href: '/academics' },
   { label: 'Admissions', href: '/admissions' },
   { label: 'News', href: '/news' },

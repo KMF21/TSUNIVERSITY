@@ -29,8 +29,26 @@ export default defineConfig({
                   .schemaType('siteSettings')
                   .documentId('siteSettings')
               ),
+            S.listItem()
+              .title('Institutional Facts')
+              .id('institutionalFacts')
+              .child(
+                S.document()
+                  .schemaType('institutionalFacts')
+                  .documentId('institutionalFacts')
+              ),
+            S.listItem()
+              .title('Rankings & Recognition')
+              .id('rankingsPage')
+              .child(
+                S.document()
+                  .schemaType('rankingsPage')
+                  .documentId('rankingsPage')
+              ),
             S.divider(),
-            ...S.documentTypeListItems().filter((item) => item.getId() !== 'siteSettings'),
+            ...S.documentTypeListItems().filter(
+              (item) => !['siteSettings', 'institutionalFacts', 'rankingsPage'].includes(item.getId() ?? '')
+            ),
           ]),
     }),
     visionTool(),

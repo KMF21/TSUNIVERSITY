@@ -7,7 +7,7 @@ const INFO = [
   { label: 'Our Campus', value: 'ATC, 660213, Jalingo, Taraba State' },
   { label: 'Email Us', value: 'registrar@tsuniversity.edu.ng' },
   { label: 'ICT Support', value: '08035781645 · 08168385747' },
-  { label: 'Admissions', value: '+2348160695156 · +2348087227122' },
+  { label: 'Admissions', value: '+2348160695156 · WhatsApp: +2349020020173' },
 ]
 
 export default function ContactPage() {

@@ -9,6 +9,9 @@ import tetfundIntervention from './tetfundIntervention'
 import studentLifeCategory from './studentLifeCategory'
 import academicCalendarEntry from './academicCalendarEntry'
 import staffMember from './staffMember'
+import institutionalFacts from './institutionalFacts'
+import rankingsPage from './rankingsPage'
+import tetfundResearch from './tetfundResearch'
 
 export const schemaTypes = [
   post,
@@ -22,4 +25,7 @@ export const schemaTypes = [
   studentLifeCategory,
   academicCalendarEntry,
   staffMember,
+  institutionalFacts,
+  rankingsPage,
+  tetfundResearch,
 ]

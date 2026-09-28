@@ -47,7 +47,7 @@ export const ACADEMIC_CALENDAR_QUERY = `*[_type == "academicCalendarEntry"] | or
 // "title" and "excerpt" — coalesce() picks whichever one that type has.
 // facultySlug is only meaningful for departments, used to build their href.
 export const SEARCH_QUERY = `*[
-  _type in ["page", "post", "event", "faculty", "department", "studentLifeCategory", "staffMember"] &&
+  _type in ["page", "post", "event", "faculty", "department", "studentLifeCategory", "staffMember", "rankingsPage", "tetfundResearch"] &&
   (
     title match $q + "*" ||
     name match $q + "*" ||
@@ -59,7 +59,7 @@ export const SEARCH_QUERY = `*[
   _type,
   "title": coalesce(title, name),
   "slug": slug.current,
-  "excerpt": coalesce(excerpt, summary, heroSubheading, specialization),
+  "excerpt": coalesce(excerpt, summary, heroSubheading, specialization, publication, researchers),
   "facultySlug": faculty->slug.current
 }`
 
@@ -177,3 +177,21 @@ export const ACADEMIC_CATALOG_QUERY = `
     }
   }
 `
+
+export const INSTITUTIONAL_FACTS_QUERY = `*[_type == "institutionalFacts"][0]{
+  stats, keyFacts, studentCommunity, studentCommunityNote
+}`
+
+export const RANKINGS_PAGE_QUERY = `*[_type == "rankingsPage"][0]{
+  title, heroHeading, heroSubheading,
+  rankingsIntro, rankings, rankingsMethodNote, highlights,
+  strengthsIntro, researchStrengths,
+  awardsIntro, awards,
+  scholarsIntro, scholars,
+  sources, lastUpdatedNote
+}`
+
+export const TETFUND_RESEARCH_QUERY = `*[_type == "tetfundResearch"]{
+  _id, title, fundingType, fundingNote, researchers, year, publication,
+  paperUrl, featured, summary, links[]{_key, label, url}, order
+}`

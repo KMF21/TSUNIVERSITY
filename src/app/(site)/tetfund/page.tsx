@@ -2,10 +2,12 @@ import { Accordion } from '@/components/ui/Accordion'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { TetfundGallery } from '@/components/tetfund/TetfundGallery'
+import { TetfundResearch } from '@/components/tetfund/TetfundResearch'
 import { sanityFetch } from '@/sanity/live'
 import {
   PAGE_BY_SLUG_QUERY,
   TETFUND_INTERVENTIONS_QUERY,
+  TETFUND_RESEARCH_QUERY,
 } from '@/sanity/queries'
 
 const SPECIAL_INTERVENTION = [
@@ -33,9 +35,10 @@ const ANNUAL_INTERVENTION = [
 ]
 
 export default async function TetfundPage() {
-  const [page, interventions] = await Promise.all([
+  const [page, interventions, research] = await Promise.all([
     (await sanityFetch({ query: PAGE_BY_SLUG_QUERY, params: { slug: 'tetfund' } })).data,
     (await sanityFetch({ query: TETFUND_INTERVENTIONS_QUERY })).data,
+    (await sanityFetch({ query: TETFUND_RESEARCH_QUERY })).data,
   ])
 
   return (
@@ -62,6 +65,8 @@ export default async function TetfundPage() {
       </div>
 
       <TetfundGallery interventions={interventions} />
+
+      <TetfundResearch items={research ?? []} />
     </Container>
   )
 }
