@@ -12,6 +12,7 @@ import staffMember from './staffMember'
 import institutionalFacts from './institutionalFacts'
 import rankingsPage from './rankingsPage'
 import tetfundResearch from './tetfundResearch'
+import statisticIndicator from './statisticIndicator'
 
 export const schemaTypes = [
   post,
@@ -28,4 +29,5 @@ export const schemaTypes = [
   institutionalFacts,
   rankingsPage,
   tetfundResearch,
+  statisticIndicator,
 ]

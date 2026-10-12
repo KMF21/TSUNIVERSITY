@@ -16,6 +16,7 @@ export const NAV_LINKS: NavItem[] = [
     children: [
       { label: 'About TSU', href: '/about' },
       { label: 'Rankings & Recognition', href: '/rankings' },
+      { label: 'Facts & Figures', href: '/facts-and-figures' },
     ],
   },
   { label: 'Academics', href: '/academics' },

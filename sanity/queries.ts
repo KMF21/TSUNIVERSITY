@@ -195,3 +195,19 @@ export const TETFUND_RESEARCH_QUERY = `*[_type == "tetfundResearch"]{
   _id, title, fundingType, fundingNote, researchers, year, publication,
   paperUrl, featured, summary, links[]{_key, label, url}, order
 }`
+
+export const STATISTIC_INDICATORS_LIST_QUERY = `*[_type == "statisticIndicator"] | order(order asc, indicatorNumber asc){
+  _id, title, "slug": slug.current, indicatorNumber, summary, stats[0...3]
+}`
+
+export const STATISTIC_INDICATOR_BY_SLUG_QUERY = `*[_type == "statisticIndicator" && slug.current == $slug][0]{
+  title, indicatorNumber, summary, stats,
+  sections[]{
+    ...,
+    _type == "factsTable" => { heading, intro, columns, rows[]{cells, emphasis}, footerRow },
+    _type == "barPanel" => { heading, bars[]{label, percent, displayValue} },
+    _type == "note" => { tone, text },
+    _type == "richText" => { heading, body }
+  },
+  sourceNotes, lastUpdatedNote
+}`

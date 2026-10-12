@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 
-import { PageBuilder } from '../../../../scripts/PageBuilder'
+import { PageBuilder } from '@/components/ui/PageBuilder'
 
 import { PAGE_BY_SLUG_QUERY, LEADERSHIP_QUERY, INSTITUTIONAL_FACTS_QUERY } from '@/sanity/queries'
 import { sanityFetch } from '@/sanity/live'

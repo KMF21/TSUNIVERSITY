@@ -23,6 +23,9 @@ export function Footer() {
               <Link href="/rankings">Rankings &amp; Recognition</Link>
             </li>
             <li>
+              <Link href="/facts-and-figures">Facts &amp; Figures</Link>
+            </li>
+            <li>
               <Link href="/academics">Academics</Link>
             </li>
             <li>
