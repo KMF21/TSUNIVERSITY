@@ -21,6 +21,8 @@ export type NoteSection = {
   _type: 'note'
   tone?: 'pending' | 'formula' | 'info'
   text?: string
+  linkHref?: string
+  linkLabel?: string
 }
 
 export type RichTextSection = {

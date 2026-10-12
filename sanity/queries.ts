@@ -206,7 +206,7 @@ export const STATISTIC_INDICATOR_BY_SLUG_QUERY = `*[_type == "statisticIndicator
     ...,
     _type == "factsTable" => { heading, intro, columns, rows[]{cells, emphasis}, footerRow },
     _type == "barPanel" => { heading, bars[]{label, percent, displayValue} },
-    _type == "note" => { tone, text },
+    _type == "note" => { tone, text, linkHref, linkLabel },
     _type == "richText" => { heading, body }
   },
   sourceNotes, lastUpdatedNote

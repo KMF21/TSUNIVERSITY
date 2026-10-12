@@ -1,4 +1,5 @@
-import { AlertCircle, Calculator, Info } from 'lucide-react'
+import Link from 'next/link'
+import { AlertCircle, ArrowRight, Calculator, Info } from 'lucide-react'
 import type { NoteSection } from './types'
 
 const TONE_STYLES: Record<string, { wrap: string; icon: typeof Info }> = {
@@ -15,7 +16,18 @@ export function NoteCallout({ section }: { section: NoteSection }) {
   return (
     <div className={`flex items-start gap-3 rounded-card border-l-4 px-5 py-4 text-sm leading-6 ${style.wrap}`}>
       <Icon className="mt-0.5 h-4 w-4 shrink-0" />
-      <p>{section.text}</p>
+      <div>
+        <p>{section.text}</p>
+        {section.linkHref && (
+          <Link
+            href={section.linkHref}
+            className="mt-2 inline-flex items-center gap-1 font-semibold text-crimson hover:underline"
+          >
+            {section.linkLabel || 'Learn more'}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        )}
+      </div>
     </div>
   )
 }

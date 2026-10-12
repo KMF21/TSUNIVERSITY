@@ -148,6 +148,8 @@ export default defineType({
           fields: [
             {name: 'tone', title: 'Tone', type: 'string', options: {list: ['pending', 'formula', 'info']}, initialValue: 'info'},
             {name: 'text', title: 'Text', type: 'text', rows: 3},
+            {name: 'linkHref', title: 'Link URL (optional)', type: 'string', description: 'e.g. "/rankings" — use to point to the full page instead of repeating its content here'},
+            {name: 'linkLabel', title: 'Link label (optional)', type: 'string', description: 'e.g. "See the full Rankings & Recognition page"'},
           ],
           preview: {select: {title: 'text'}},
         },

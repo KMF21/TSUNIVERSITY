@@ -45,7 +45,13 @@ const bars = (heading, items) => ({
   })),
 })
 
-const note = (tone, text) => ({ _type: 'note', _key: Math.random().toString(36).slice(2), tone, text })
+const note = (tone, text, link) => ({
+  _type: 'note',
+  _key: Math.random().toString(36).slice(2),
+  tone,
+  text,
+  ...(link ? { linkHref: link.href, linkLabel: link.label } : {}),
+})
 
 const docs = []
 
@@ -65,16 +71,8 @@ docs.push(
     [
       note(
         'info',
-        'Globally ranked for research impact: in the 2027 edition of the AD Scientific Index, TSU holds a world position of 7,686 by H-index, with 107 academic researchers profiled on the index.'
-      ),
-      table(
-        'Rankings at a Glance',
-        ['Ranking', 'Position', 'Edition'],
-        [
-          ['AD Scientific Index — world rank by H-index', '7,686', '2027 (updated 25 Sep 2026)'],
-          ['uniRank — Nigeria', '91', '2026'],
-          ['uniRank — world', '10,202', '2026'],
-        ]
+        'Globally ranked for research impact: in the 2027 edition of the AD Scientific Index, TSU holds a world position of 7,686 by H-index, with 107 academic researchers profiled on the index. For the full set of rankings, awards and research strengths, see the Rankings & Recognition page.',
+        { href: '/rankings', label: 'See the full Rankings & Recognition page' }
       ),
       table(
         'Institutional Profile',
@@ -359,24 +357,10 @@ docs.push(
           ['2026', '3'],
         ]
       ),
-      table(
-        'Publication Links',
-        ['Year', 'Publication', 'Discipline', 'Type'],
-        [
-          ['2021', 'How social media crisis response and social interaction is helping people recover from Covid-19', 'Computer Science', 'International (Scopus)'],
-          ['2022', 'How advanced technological approaches are reshaping sustainable social media crisis management', 'Computer Science', 'International (Scopus; WoS)'],
-          ['2022', 'Pedometric and morphological characterization of soils of Kona District, Taraba State', 'Agriculture', 'TETFund'],
-          ['2023', 'Multifaceted analytical flood risk assessment in major tributaries of the River Benue basin', 'Geography & Environment', 'TETFund'],
-          ['2023', 'Assessment of agro-allied chemical pollution on surface water quality of River Lamurde', 'Geography & Environment', 'TETFund'],
-          ['2024', 'Global trend assessment of land use and land cover changes', 'Geography & Environment', 'International (Scopus; WoS)'],
-          ['2024', 'Commoditizing of human beings: the implications of kidnapping on national security in Nigeria', 'Social Sciences', 'TETFund'],
-          ['2024', 'The media and civil protests in Africa: contextualising Nigerian press coverage of #EndSARS', 'Communication & Media', 'TETFund'],
-          ['2025', 'Diversity assessments of native and alien vascular plants in Gashaka Gumti National Park', 'Biological Sciences', 'International (Scopus; WoS)'],
-          ['2025', 'An investigation into use of technology for online learning in Taraba State University', 'Education', 'TETFund'],
-          ['2026', 'Development, functional profiling, and probiotic evaluation of indigenous LAB from Nigerian fermented foods', 'Biological Sciences', 'International (Scopus; WoS)'],
-          ['2026', 'Cash crop cultivation and deforestation dynamics in Kurmi Local Government Area', 'Geography & Environment', 'TETFund'],
-          ['2026', 'Analysis of the impact of land use and land cover changes on soil erosion at the River Lamurde catchment', 'Geography & Environment', 'TETFund'],
-        ]
+      note(
+        'info',
+        'The individual papers behind these numbers — including TETFund-supported studies such as the River Benue basin flood-risk assessment, the River Lamurde water-quality and soil-erosion studies, and the #EndSARS media-coverage study — are listed with full citations on the TETFund-Supported Research page.',
+        { href: '/tetfund', label: 'See TETFund-supported publications' }
       ),
     ],
     [
