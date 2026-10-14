@@ -94,6 +94,19 @@ export default defineType({
       type: 'boolean',
       initialValue: false,
     }),
+    defineField({
+      name: 'attachment',
+      title: 'Attachment',
+      type: 'file',
+      description: 'Optional downloadable file — e.g. a full report, book of proceedings, or programme',
+    }),
+    defineField({
+      name: 'attachmentLabel',
+      title: 'Attachment Button Label',
+      type: 'string',
+      description: 'e.g. "Download the Book of Proceedings (PDF)"',
+      hidden: ({document}) => !document?.attachment,
+    }),
   ],
   preview: {
     select: {title: 'title', media: 'mainImage', subtitle: 'category'},

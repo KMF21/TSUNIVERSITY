@@ -14,7 +14,9 @@ export const ALL_POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc){
 
 export const POST_BY_SLUG_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id, title, body, mainImage, category, publishedAt,
-  "authorName": coalesce(author->name, authorNameOverride)
+  "authorName": coalesce(author->name, authorNameOverride),
+  "attachment": attachment.asset->{url, originalFilename, size},
+  attachmentLabel
 }`
 
 export const UPCOMING_EVENTS_QUERY = `*[_type == "event" && startDateTime > now()] | order(startDateTime asc)[0...3]{

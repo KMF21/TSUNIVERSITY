@@ -1,10 +1,17 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
+import { FileDown } from 'lucide-react'
 import { sanityFetch } from '@/sanity/live'
 import { POST_BY_SLUG_QUERY } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import { Container } from '@/components/ui/Container'
+
+function formatFileSize(bytes?: number) {
+  if (!bytes) return null
+  const mb = bytes / (1024 * 1024)
+  return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`
+}
 
 type PostPageProps = {
   params: Promise<{
@@ -58,6 +65,26 @@ export default async function PostPage({
       <div className="prose prose-neutral mt-8 max-w-none">
         <PortableText value={post.body} />
       </div>
+
+      {post.attachment?.url && (
+        <a
+          href={post.attachment.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 flex items-center gap-4 rounded-card border border-black/10 bg-rose-tint/40 px-6 py-5 transition-colors hover:bg-rose-tint/60"
+        >
+          <FileDown className="h-8 w-8 shrink-0 text-crimson" />
+          <div>
+            <p className="font-semibold text-navy">
+              {post.attachmentLabel || 'Download attachment (PDF)'}
+            </p>
+            <p className="text-sm text-ink-muted">
+              {post.attachment.originalFilename}
+              {formatFileSize(post.attachment.size) ? ` · ${formatFileSize(post.attachment.size)}` : ''}
+            </p>
+          </div>
+        </a>
+      )}
     </Container>
   )
 }
