@@ -45,7 +45,7 @@ export default async function EventPage({
       </p>
 
       {event.image && (
-        <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-card">
+        <div className="relative mt-8 h-56 w-full overflow-hidden rounded-card bg-soft sm:h-72">
           <Image
             src={urlFor(event.image).width(1200).url()}
             alt={event.title}

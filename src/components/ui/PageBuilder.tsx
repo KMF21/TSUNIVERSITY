@@ -77,7 +77,7 @@ export function PageBuilder({
       {/* Hero Image */}
       {page.heroImage && (
         <Container className="py-10">
-          <div className="relative aspect-video w-full overflow-hidden rounded-card">
+          <div className="relative h-64 w-full overflow-hidden rounded-card sm:h-80">
             <Image
               src={urlFor(page.heroImage).width(1400).url()}
               alt={page.title}
