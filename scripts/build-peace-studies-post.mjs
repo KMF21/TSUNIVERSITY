@@ -7,6 +7,14 @@
 // and the PDF straight from scripts/assets/ as part of the dataset import —
 // no manual upload through Studio needed.
 import { writeFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+
+// _sanityAsset only resolves reliably with an ABSOLUTE file:// path — a
+// relative one (file://./assets/x.jpg) depends on the current working
+// directory the import command happens to be run from, which is fragile.
+// Resolving it here from this script's own location makes it work no
+// matter where `sanity dataset import` is invoked from.
+const assetPath = (name) => `file://${fileURLToPath(new URL(`./assets/${name}`, import.meta.url))}`
 
 const block = (text, style = 'normal') => ({
   _type: 'block',
@@ -103,7 +111,7 @@ const doc = {
   mainImage: {
     _type: 'image',
     alt: 'Cover of the Book of Proceedings — Violent Conflicts and Peacebuilding in Taraba State, Northeast Nigeria',
-    _sanityAsset: 'image@file://./assets/peace-studies-proceedings-cover.jpg',
+    _sanityAsset: `image@${assetPath('peace-studies-proceedings-cover.jpg')}`,
   },
   body,
   authorNameOverride: 'Department of Peace Studies and Conflict Resolution',
@@ -111,7 +119,7 @@ const doc = {
   featured: false,
   attachment: {
     _type: 'file',
-    _sanityAsset: 'file@file://./assets/peace-studies-book-of-proceedings.pdf',
+    _sanityAsset: `file@${assetPath('peace-studies-book-of-proceedings.pdf')}`,
   },
   attachmentLabel: 'Download the Book of Proceedings (PDF)',
 }
