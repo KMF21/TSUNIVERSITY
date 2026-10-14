@@ -53,4 +53,8 @@ logs
 *.log
 
 # OS files
-Thumbs.dbscripts/peace-studies-post.ndjson
+Thumbs.db
+
+# generated import files with machine-specific absolute asset paths —
+# regenerate locally before each import, don't commit
+scripts/peace-studies-post.ndjson
