@@ -41,6 +41,9 @@ export function Footer() {
               <Link href="/events">Events</Link>
             </li>
             <li>
+              <Link href="/conferences">Conferences</Link>
+            </li>
+            <li>
               <Link href="/giving">Give</Link>
             </li>
           </ul>
@@ -76,6 +79,9 @@ export function Footer() {
             </li>
             <li>
               <Link href="/tetfund">TETFund</Link>
+            </li>
+            <li>
+              <Link href="/proceedings">Conference Proceedings</Link>
             </li>
             <li>
               <Link href="/faq">FAQ</Link>

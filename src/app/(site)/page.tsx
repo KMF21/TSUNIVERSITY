@@ -6,6 +6,7 @@ import { QuickAccess } from '../../components/home/QuickAccess'
 import { FacultyGrid } from '../../components/home/FacultyGrid'
 import { NewsPreview } from '../../components/home/NewsPreview'
 import { EventsPreview } from '../../components/home/EventsPreview'
+import { ConferencesPreview } from '../../components/home/ConferencesPreview'
 import { PortalsTeaser } from '../../components/home/PortalsTeaser'
 import { CtaBanner } from '../../components/home/CtaBanner'
 
@@ -20,6 +21,7 @@ export default async function HomePage() {
       <FacultyGrid />
       <NewsPreview />
       <EventsPreview />
+      <ConferencesPreview />
       <PortalsTeaser />
       <CtaBanner />
     </>
