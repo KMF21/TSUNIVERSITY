@@ -22,3 +22,12 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Print: drop interactive chrome so programmes and proceedings print cleanly. */
+@media print {
+  [data-no-print],
+  body > header,
+  body > footer {
+    display: none !important;
+  }
+}

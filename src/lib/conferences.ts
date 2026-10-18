@@ -213,14 +213,14 @@ const icsStamp = (date: Date) => date.toISOString().replace(/[-:]/g, '').replace
 const icsDay = (value: string) => value.slice(0, 10).replace(/-/g, '')
 
 type IcsEvent =
-  | { uid: string; title: string; description?: string; url?: string; location?: string; allDay: string }
+  | { uid: string; title: string; description?: string; url?: string; location?: string; allDay: string; lastDay?: string }
   | { uid: string; title: string; description?: string; url?: string; location?: string; start: string; end: string }
 
 export function buildIcs(event: IcsEvent): string {
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Taraba State University//Conferences//EN', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT']
   lines.push(`UID:${event.uid}`, `DTSTAMP:${icsStamp(new Date())}`)
   if ('allDay' in event) {
-    const { y, m, d } = parseDateOnly(event.allDay)
+    const { y, m, d } = parseDateOnly(event.lastDay ?? event.allDay)
     const next = new Date(Date.UTC(y, m - 1, d + 1)).toISOString().slice(0, 10)
     lines.push(`DTSTART;VALUE=DATE:${icsDay(event.allDay)}`, `DTEND;VALUE=DATE:${icsDay(next)}`)
   } else {

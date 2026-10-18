@@ -1,0 +1,62 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
+export type NavSection = { id: string; label: string }
+
+/**
+ * Sticky in-page navigation with scroll-spy. Sections are filtered on the
+ * server so empty ones never appear. Sits below the 80px site header.
+ */
+export function SectionNav({ sections }: { sections: NavSection[] }) {
+  const [active, setActive] = useState(sections[0]?.id ?? '')
+
+  useEffect(() => {
+    const targets = sections.map((s) => document.getElementById(s.id)).filter((el): el is HTMLElement => Boolean(el))
+    if (targets.length === 0 || !('IntersectionObserver' in window)) return
+    const visible = new Map<string, number>()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) visible.set(e.target.id, e.boundingClientRect.top)
+          else visible.delete(e.target.id)
+        }
+        if (visible.size > 0) {
+          const [first] = [...visible.entries()].sort((a, b) => a[1] - b[1])
+          setActive(first[0])
+        }
+      },
+      { rootMargin: '-160px 0px -60% 0px', threshold: 0 }
+    )
+    targets.forEach((t) => observer.observe(t))
+    return () => observer.disconnect()
+  }, [sections])
+
+  // Keep the active pill visible in the horizontally scrolling mobile bar.
+  useEffect(() => {
+    document.querySelector<HTMLElement>(`[data-nav-id="${active}"]`)?.scrollIntoView({ block: 'nearest', inline: 'center' })
+  }, [active])
+
+  if (sections.length < 2) return null
+
+  return (
+    <nav aria-label="Conference sections" className="sticky top-16 z-30 border-b border-black/10 bg-white/95 backdrop-blur lg:top-20" data-no-print>
+      <ul className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-6 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {sections.map((s) => (
+          <li key={s.id} className="shrink-0">
+            <a
+              href={`#${s.id}`}
+              data-nav-id={s.id}
+              aria-current={active === s.id ? 'true' : undefined}
+              className={`flex min-h-[48px] items-center border-b-2 px-3 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson ${
+                active === s.id ? 'border-crimson text-crimson' : 'border-transparent text-ink-muted hover:text-navy'
+              }`}
+            >
+              {s.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
