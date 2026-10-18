@@ -6,37 +6,63 @@
 //   node scripts/build-conferences-sample.mjs
 //   pnpm exec sanity dataset import scripts/conferences-sample.ndjson production --replace
 //
-// Placeholder artwork is generated locally (needs Python + Pillow) — it is
+// Placeholder artwork is generated locally — it is
 // not real photography and is replaced by uploading proper images in Studio.
-import { execFileSync } from 'node:child_process'
+import { deflateSync } from 'node:zlib'
 import { existsSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { assetFsPath, block, image, key, ref, withKeys } from './lib/seed-helpers.mjs'
+
+// Placeholder artwork: a navy-to-crimson gradient PNG written with plain Node
+// (no Python/ImageMagick needed, so it runs the same on Windows).
+const crcTable = Array.from({ length: 256 }, (_, n) => {
+  let c = n
+  for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1
+  return c >>> 0
+})
+const crc32 = (buf) => {
+  let c = 0xffffffff
+  for (const byte of buf) c = crcTable[(c ^ byte) & 0xff] ^ (c >>> 8)
+  return (c ^ 0xffffffff) >>> 0
+}
+const chunk = (type, data) => {
+  const out = Buffer.alloc(12 + data.length)
+  out.writeUInt32BE(data.length, 0)
+  out.write(type, 4, 'ascii')
+  data.copy(out, 8)
+  out.writeUInt32BE(crc32(out.subarray(4, 8 + data.length)), 8 + data.length)
+  return out
+}
+const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16))
+
+function gradientPng(from, to, w = 1600, h = 800) {
+  const [a, b] = [hex(from), hex(to)]
+  const raw = Buffer.alloc((w * 3 + 1) * h)
+  for (let y = 0; y < h; y++) {
+    const row = y * (w * 3 + 1)
+    for (let x = 0; x < w; x++) {
+      const t = (x / w) * 0.6 + (y / h) * 0.4
+      for (let i = 0; i < 3; i++) raw[row + 1 + x * 3 + i] = Math.round(a[i] + (b[i] - a[i]) * t)
+    }
+  }
+  const ihdr = Buffer.alloc(13)
+  ihdr.writeUInt32BE(w, 0)
+  ihdr.writeUInt32BE(h, 4)
+  ihdr.set([8, 2, 0, 0, 0], 8)
+  return Buffer.concat([
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    chunk('IHDR', ihdr),
+    chunk('IDAT', deflateSync(raw)),
+    chunk('IEND', Buffer.alloc(0)),
+  ])
+}
 
 const art = [
   ['sample-conference-upcoming.png', '#0F1F3D', '#C4293B'],
   ['sample-conference-past.png', '#16305F', '#7A1A28'],
 ]
 for (const [name, from, to] of art) {
-  if (existsSync(assetFsPath(name))) continue
-  execFileSync('python3', [
-    '-c',
-    `import sys
-from PIL import Image
-w,h=1600,800
-a=tuple(int(sys.argv[2][i:i+2],16) for i in (1,3,5))
-b=tuple(int(sys.argv[3][i:i+2],16) for i in (1,3,5))
-img=Image.new('RGB',(w,h))
-px=img.load()
-for y in range(h):
-    for x in range(w):
-        t=(x/w*0.6+y/h*0.4)
-        px[x,y]=tuple(int(a[i]+(b[i]-a[i])*t) for i in range(3))
-img.save(sys.argv[1])`,
-    assetFsPath(name),
-    from,
-    to,
-  ])
+  if (!existsSync(assetFsPath(name))) writeFileSync(assetFsPath(name), gradientPng(from, to))
 }
 
 const year = new Date().getFullYear()
