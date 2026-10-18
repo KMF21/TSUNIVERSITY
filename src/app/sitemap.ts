@@ -9,6 +9,8 @@ const STATIC_ROUTES = [
   '/academic-calendar',
   '/academics',
   '/admissions',
+  '/admissions/postgraduate',
+  '/admissions/undergraduate',
   '/alumni',
   '/campuses',
   '/careers',
