@@ -213,3 +213,73 @@ export const STATISTIC_INDICATOR_BY_SLUG_QUERY = `*[_type == "statisticIndicator
   },
   sourceNotes, lastUpdatedNote
 }`
+
+// ── Conferences & proceedings ────────────────────────────────────────────
+// Shared projection for anywhere a conference appears as a card or list row.
+const CONFERENCE_SUMMARY_FIELDS = `
+  _id, title, shortName, edition, year, "slug": slug.current, series, theme,
+  startDate, endDate, timezone, mode, featured, heroImage,
+  "organiserName": coalesce(organiser->name, organiserOther),
+  "organiserId": organiser._ref,
+  "venueCity": venue.city, "venueName": venue.name,
+  "importantDates": importantDates[]{_key, label, date, note},
+  "hasProceedings": count(*[_type == "proceedings" && references(^._id)]) > 0
+`
+
+export const CONFERENCES_LIST_QUERY = `*[_type == "conference" && defined(slug.current)] | order(startDate desc){
+  ${CONFERENCE_SUMMARY_FIELDS}
+}`
+
+export const FEATURED_CONFERENCES_QUERY = `*[_type == "conference" && defined(slug.current) && featured == true && endDate >= now()] | order(startDate asc)[0...3]{
+  ${CONFERENCE_SUMMARY_FIELDS}
+}`
+
+export const CONFERENCE_BY_SLUG_QUERY = `*[_type == "conference" && slug.current == $slug][0]{
+  ${CONFERENCE_SUMMARY_FIELDS},
+  organiserOther, logo, subThemes, overview,
+  venue{name, address, city, mapEmbedUrl, latitude, longitude, directions},
+  callForPapers, submissionGuidelines, submissionUrl,
+  "templateFileUrl": templateFile.asset->url,
+  registration{fees[]{_key, category, amount, currency, note}, instructions, registrationUrl},
+  programme[]{_key, date, label, sessions[]{_key, startTime, endTime, title, type, speaker, room}},
+  "programmePdfUrl": programmePdf.asset->url,
+  keynoteSpeakers[]{_key, name, title, affiliation, photo, bio, talkTitle},
+  committees[]{_key, committeeName, members[]{_key, name, role, affiliation}},
+  publication, travelAndAccommodation,
+  sponsors[]{_key, name, logo, url},
+  contact, gallery, seo,
+  "proceedingsTitle": *[_type == "proceedings" && references(^._id)][0].title,
+  "otherEditions": select(
+    defined(series) => *[_type == "conference" && series == ^.series && _id != ^._id && defined(slug.current)] | order(year desc){
+      _id, title, shortName, edition, year, "slug": slug.current, startDate, endDate, heroImage
+    },
+    []
+  )
+}`
+
+export const PROCEEDINGS_BY_CONFERENCE_SLUG_QUERY = `*[_type == "proceedings" && conference->slug.current == $slug][0]{
+  _id, title, "slug": slug.current, year, coverImage, isbn, issn, doi, publisher, editors, publishedDate,
+  "fullVolumeUrl": fullVolumePdf.asset->url,
+  "fullVolumeSize": fullVolumePdf.asset->size,
+  papers[]{_key, title, authors, affiliations, abstract, pages, doi, keywords, "pdfUrl": pdf.asset->url},
+  "conference": conference->{
+    title, shortName, edition, year, "slug": slug.current, startDate, endDate, theme,
+    "organiserName": coalesce(organiser->name, organiserOther),
+    "venueCity": venue.city
+  }
+}`
+
+export const PROCEEDINGS_ARCHIVE_QUERY = `*[_type == "proceedings" && defined(conference->slug.current)] | order(year desc, title asc){
+  _id, title, year, coverImage, publisher, isbn,
+  "paperCount": count(papers),
+  "hasFullVolume": defined(fullVolumePdf.asset),
+  "conference": conference->{
+    title, shortName, "slug": slug.current,
+    "organiserName": coalesce(organiser->name, organiserOther)
+  }
+}`
+
+export const CONFERENCE_SITEMAP_QUERY = `{
+  "conferences": *[_type == "conference" && defined(slug.current)]{"slug": slug.current, _updatedAt},
+  "proceedings": *[_type == "proceedings" && defined(conference->slug.current)]{"slug": conference->slug.current, _updatedAt}
+}`
