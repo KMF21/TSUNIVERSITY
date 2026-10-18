@@ -7,7 +7,7 @@
 // Needs scripts/assets/peace-studies-book-of-proceedings.pdf locally (it is
 // gitignored — too large for the repo). Needs `qpdf` to split it into one PDF
 // per paper; pass --no-split to skip that and import the full volume only.
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { assetFsPath, block, file, image, key, ref, withKeys } from './lib/seed-helpers.mjs'
@@ -21,7 +21,15 @@ const CONFERENCE_END = '2025-11-30'
 
 const PDF = 'peace-studies-book-of-proceedings.pdf'
 const PDF_OFFSET = 12 // printed page 1 is PDF page 13
-const split = !process.argv.includes('--no-split')
+
+// Per-paper PDFs need qpdf (https://qpdf.sourceforge.io — on Windows:
+// `winget install qpdf`). Without it the seeder skips splitting and imports
+// the full volume only; papers still list with titles, authors and pages.
+const hasQpdf = spawnSync('qpdf', ['--version']).status === 0
+const split = !process.argv.includes('--no-split') && hasQpdf
+if (!process.argv.includes('--no-split') && !hasQpdf) {
+  console.warn('qpdf not found — skipping per-paper PDFs (full volume only). Install qpdf and re-run to add them.')
+}
 
 if (!existsSync(assetFsPath(PDF))) {
   console.error(`Missing scripts/assets/${PDF} — place the full Book of Proceedings PDF there first.`)
