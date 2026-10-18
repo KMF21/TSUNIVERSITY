@@ -136,7 +136,7 @@ export function PaperList({ papers, meta }: { papers: Paper[]; meta: Meta }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search papers by title, author or keyword"
-          placeholder="Search papers by title, author or keyword"
+          placeholder="Search papers"
           className="h-12 w-full rounded-full border border-black/15 bg-white pl-12 pr-4 text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson"
         />
       </div>

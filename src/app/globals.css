@@ -30,4 +30,11 @@ body {
   body > footer {
     display: none !important;
   }
+
+  /* Dark hero: print as plain black-on-white (browsers drop backgrounds). */
+  .conference-hero,
+  .conference-hero * {
+    background: none !important;
+    color: #000 !important;
+  }
 }

@@ -250,6 +250,13 @@ function splitName(name: string) {
 
 const initials = (given: string[]) => given.map((g) => `${g.charAt(0).toUpperCase()}.`).join(' ')
 
+/** "A", "A & B", "A, B, & C" */
+function joinApa(names: string[]): string {
+  if (names.length <= 1) return names[0] ?? ''
+  if (names.length === 2) return `${names[0]} & ${names[1]}`
+  return `${names.slice(0, -1).join(', ')}, & ${names[names.length - 1]}`
+}
+
 function apaAuthors(authors: string[]): string {
   const formatted = authors.map((a) => {
     const { given, family } = splitName(a)
@@ -264,7 +271,7 @@ const doiUrl = (doi: string) => (doi.startsWith('http') ? doi : `https://doi.org
 
 export function citeApa(paper: Paper, proceedings: Pick<ProceedingsDetail, 'title' | 'year' | 'editors' | 'publisher'>): string {
   const editors = proceedings.editors?.length
-    ? `In ${proceedings.editors.map((e) => { const { given, family } = splitName(e); return `${initials(given)} ${family}`.trim() }).join(' & ')} (${proceedings.editors.length > 1 ? 'Eds.' : 'Ed.'}), `
+    ? `In ${joinApa(proceedings.editors.map((e) => { const { given, family } = splitName(e); return `${initials(given)} ${family}`.trim() }))} (${proceedings.editors.length > 1 ? 'Eds.' : 'Ed.'}), `
     : 'In '
   const pages = paper.pages ? ` (pp. ${paper.pages.replace(/-/g, '–')})` : ''
   const parts = [

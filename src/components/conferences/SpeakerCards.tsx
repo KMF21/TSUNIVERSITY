@@ -19,7 +19,7 @@ function Avatar({ speaker, size }: { speaker: Speaker; size: number }) {
       />
     )
   }
-  const initials = speaker.name.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase()).join('')
+  const initials = speaker.name.split(/\s+/).filter((t) => /^\p{L}/u.test(t) && !/^(dr|prof|professor|mr|mrs|ms|engr|rev)\.?$/i.test(t)).slice(0, 2).map((p) => p[0]?.toUpperCase()).join('')
   return (
     <span
       aria-hidden="true"

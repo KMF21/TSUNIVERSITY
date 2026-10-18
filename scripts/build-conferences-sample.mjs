@@ -73,7 +73,7 @@ const upcoming = {
     directions: [lorem('Sample directions: the main campus is on the Jalingo–Yola road. Taxis and shuttle buses stop at the main gate.')],
   },
   importantDates: withKeys([
-    { _type: 'conferenceImportantDate', label: 'Abstract submission', date: isoDay(-10), note: 'Closed' },
+    { _type: 'conferenceImportantDate', label: 'Abstract submission', date: isoDay(-10) },
     { _type: 'conferenceImportantDate', label: 'Full paper submission', date: isoDay(20) },
     { _type: 'conferenceImportantDate', label: 'Notification of acceptance', date: isoDay(35) },
     { _type: 'conferenceImportantDate', label: 'Early-bird registration ends', date: isoDay(45) },

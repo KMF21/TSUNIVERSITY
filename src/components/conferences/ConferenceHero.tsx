@@ -32,7 +32,7 @@ export function ConferenceHero({
   const venueLine = c.mode === 'virtual' ? 'Online' : [c.venue?.name, c.venue?.city].filter(Boolean).join(', ')
 
   return (
-    <header className="relative isolate overflow-hidden bg-navy text-white">
+    <header className="conference-hero relative isolate overflow-hidden bg-navy text-white">
       {hasImage(c.heroImage) && (
         <>
           <Image src={imageUrl(c.heroImage, 1800, 900)} alt="" fill priority sizes="100vw" className="-z-20 object-cover" />
@@ -65,7 +65,7 @@ export function ConferenceHero({
             <h1 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               {c.edition && <span className="mb-1 block text-lg font-semibold text-white/70 sm:text-xl">{c.edition} Edition</span>}
               {c.title}
-              {c.shortName && <span className="ml-3 whitespace-nowrap text-white/60">({c.shortName})</span>}
+              {c.shortName && <span className="ml-2 text-white/60">({c.shortName})</span>}
             </h1>
 
             {c.theme && (

@@ -11,25 +11,31 @@ export type NavSection = { id: string; label: string }
 export function SectionNav({ sections }: { sections: NavSection[] }) {
   const [active, setActive] = useState(sections[0]?.id ?? '')
 
+  // Scroll-spy: the active section is the last one whose top has passed the
+  // sticky header + nav (about 200px from the viewport top).
   useEffect(() => {
-    const targets = sections.map((s) => document.getElementById(s.id)).filter((el): el is HTMLElement => Boolean(el))
-    if (targets.length === 0 || !('IntersectionObserver' in window)) return
-    const visible = new Map<string, number>()
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) visible.set(e.target.id, e.boundingClientRect.top)
-          else visible.delete(e.target.id)
-        }
-        if (visible.size > 0) {
-          const [first] = [...visible.entries()].sort((a, b) => a[1] - b[1])
-          setActive(first[0])
-        }
-      },
-      { rootMargin: '-160px 0px -60% 0px', threshold: 0 }
-    )
-    targets.forEach((t) => observer.observe(t))
-    return () => observer.disconnect()
+    const els = sections.map((s) => document.getElementById(s.id)).filter((el): el is HTMLElement => Boolean(el))
+    if (els.length === 0) return
+    let frame = 0
+    const update = () => {
+      frame = 0
+      let current = els[0].id
+      for (const el of els) {
+        if (el.getBoundingClientRect().top <= 210) current = el.id
+      }
+      setActive(current)
+    }
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
   }, [sections])
 
   // Keep the active pill visible in the horizontally scrolling mobile bar.
