@@ -46,8 +46,39 @@ export default defineConfig({
                   .documentId('rankingsPage')
               ),
             S.divider(),
+            // Conferences and their proceedings live together, newest first,
+            // so ICT can publish a whole conference from one place.
+            S.listItem()
+              .title('Conferences')
+              .id('conferencesGroup')
+              .child(
+                S.list()
+                  .title('Conferences')
+                  .items([
+                    S.listItem()
+                      .title('Conferences')
+                      .id('conference')
+                      .child(
+                        S.documentTypeList('conference')
+                          .title('Conferences')
+                          .defaultOrdering([{field: 'startDate', direction: 'desc'}])
+                      ),
+                    S.listItem()
+                      .title('Proceedings')
+                      .id('proceedings')
+                      .child(
+                        S.documentTypeList('proceedings')
+                          .title('Proceedings')
+                          .defaultOrdering([{field: 'year', direction: 'desc'}])
+                      ),
+                  ])
+              ),
+            S.divider(),
             ...S.documentTypeListItems().filter(
-              (item) => !['siteSettings', 'institutionalFacts', 'rankingsPage'].includes(item.getId() ?? '')
+              (item) =>
+                !['siteSettings', 'institutionalFacts', 'rankingsPage', 'conference', 'proceedings'].includes(
+                  item.getId() ?? ''
+                )
             ),
           ]),
     }),

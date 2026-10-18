@@ -13,6 +13,9 @@ import institutionalFacts from './institutionalFacts'
 import rankingsPage from './rankingsPage'
 import tetfundResearch from './tetfundResearch'
 import statisticIndicator from './statisticIndicator'
+import conference from './conference'
+import proceedings from './proceedings'
+import {conferenceObjectTypes} from './conferenceObjects'
 
 export const schemaTypes = [
   post,
@@ -30,4 +33,7 @@ export const schemaTypes = [
   rankingsPage,
   tetfundResearch,
   statisticIndicator,
+  conference,
+  proceedings,
+  ...conferenceObjectTypes,
 ]
