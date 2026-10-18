@@ -58,3 +58,10 @@ Thumbs.db
 # generated import files with machine-specific absolute asset paths —
 # regenerate locally before each import, don't commit
 scripts/peace-studies-post.ndjson
+
+# local-only source files and generated output for the conference seeders
+scripts/assets/peace-studies-book-of-proceedings.pdf
+scripts/assets/peace-studies-papers/
+scripts/assets/sample-conference-*.png
+scripts/peace-studies-conference.ndjson
+scripts/conferences-sample.ndjson
