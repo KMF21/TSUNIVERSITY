@@ -630,6 +630,82 @@ docs.push(
   )
 )
 
+// 22 — Institutional AI Policy
+docs.push(
+  doc(
+    'Institutional AI Policy',
+    22,
+    10,
+    'TSU’s policy on the responsible and ethical use of artificial intelligence, including generative AI, in teaching, assessment, research and administration, approved by Senate.',
+    [
+      { value: 'Approved', label: 'By Senate, version 1.0' },
+      { value: '21', label: 'Policy sections, plus 4 appendices' },
+      { value: '2 years', label: 'Maximum interval between reviews' },
+    ],
+    [
+      table(
+        'Policy at a Glance',
+        ['Item', 'Details'],
+        [
+          ['Policy title', 'Responsible and Ethical Use of Artificial Intelligence Policy'],
+          ['Status', 'Approved by Senate, version 1.0'],
+          ['Applies to', 'All students, academic and non-teaching staff, researchers, visiting scholars, contractors and consultants, and all AI systems used for University purposes'],
+          ['Approving body', 'Senate, with oversight by the Governing Council'],
+          ['Review', 'At least every two years, or sooner if technology, law or regulation changes'],
+        ]
+      ),
+      table(
+        'What the Policy Covers',
+        ['Area', 'Where in the policy'],
+        [
+          ['Teaching and learning', 'Section 7'],
+          ['Assessment and examinations', 'Section 8 and Appendix A'],
+          ['Research', 'Section 9'],
+          ['Academic integrity and plagiarism', 'Sections 6, 15, 18 and 19'],
+          ['Data protection and privacy', 'Section 11'],
+          ['Responsible and ethical AI use', 'Sections 5, 12, 13 and 14'],
+        ]
+      ),
+      table(
+        'Key Provisions',
+        ['Principle', 'What it means'],
+        [
+          ['Human responsibility', 'AI supports human decisions but never replaces accountable human judgement on grades, admissions, discipline, employment or finance.'],
+          ['Clear rules for every assessment', 'Each assessment is classed as A (AI prohibited), B (restricted), C (permitted) or D (required), and students are told in advance.'],
+          ['Disclosure', 'Students, staff and researchers declare material AI use, using the model declarations in the policy.'],
+          ['Research integrity', 'AI must not fabricate data, references or results, and cannot be listed as an author.'],
+          ['Data protection', 'Personal data, student records, examination material and unpublished research must not be entered into unapproved AI tools.'],
+          ['Fair process', 'An AI-detector score alone is never treated as proof of misconduct, and affected people can ask for human review.'],
+          ['Fairness and access', 'Users check AI output for bias, and the University will work to reduce unequal access to paid AI tools.'],
+          ['AI literacy', 'Regular training for students and staff on verification, citation, privacy, bias, copyright and assessment design.'],
+        ]
+      ),
+      table(
+        'Who Is Responsible',
+        ['Office', 'Role under the policy'],
+        [
+          ['Governing Council and Senate', 'Approve and oversee the policy and major amendments'],
+          ['Vice-Chancellor and Management', 'Leadership, resources and risk oversight'],
+          ['Faculties and departments', 'Set AI rules for each assessment and promote AI literacy'],
+          ['Directorate of ICT/MIS', 'Secure AI infrastructure, risk assessment and technical guidance'],
+          ['University Library', 'Training in information literacy, citation and source checking'],
+          ['Research Directorate and Postgraduate School', 'AI guidance in research integrity and supervision'],
+        ]
+      ),
+      note(
+        'info',
+        'TSU’s ICT Complex is a 3MTT training centre, and the Faculty of Computing and Artificial Intelligence has NUC approval for three new degrees from 2026/2027: B.Sc. Data Science, B.Sc. Information and Communication Technology and B.Sc. Software Engineering.',
+        { href: '/academics', label: 'Explore TSU’s faculties and programmes' }
+      ),
+    ],
+    [
+      'Taraba State University, Responsible and Ethical Use of Artificial Intelligence Policy, version 1.0 (October 2026).',
+      'New programmes: NUC approval letter NUC/AP/S31/VOL.I/310, 1 June 2026. 3MTT: MoU between SAIL Empowerment Foundation and TSU (2025).',
+    ],
+    'October 2026'
+  )
+)
+
 const ndjson = docs.map((d) => JSON.stringify(d)).join('\n') + '\n'
 writeFileSync(new URL('./facts-figures-content.ndjson', import.meta.url), ndjson)
 console.log(`Wrote ${docs.length} statisticIndicator documents to scripts/facts-figures-content.ndjson`)
