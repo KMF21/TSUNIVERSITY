@@ -636,9 +636,9 @@ docs.push(
     'Institutional AI Policy',
     22,
     10,
-    'TSU’s policy on the responsible and ethical use of artificial intelligence, including generative AI, in teaching, assessment, research and administration, approved by Senate.',
+    'TSU’s draft policy on the responsible and ethical use of artificial intelligence, including generative AI, in teaching, assessment, research and administration, now before Senate for approval.',
     [
-      { value: 'Approved', label: 'By Senate, version 1.0' },
+      { value: 'Draft', label: 'Before Senate for approval' },
       { value: '21', label: 'Policy sections, plus 4 appendices' },
       { value: '2 years', label: 'Maximum interval between reviews' },
     ],
@@ -648,9 +648,10 @@ docs.push(
         ['Item', 'Details'],
         [
           ['Policy title', 'Responsible and Ethical Use of Artificial Intelligence Policy'],
-          ['Status', 'Approved by Senate, version 1.0'],
+          ['Status', 'Draft for Senate, version 1.0'],
           ['Applies to', 'All students, academic and non-teaching staff, researchers, visiting scholars, contractors and consultants, and all AI systems used for University purposes'],
           ['Approving body', 'Senate, with oversight by the Governing Council'],
+          ['Effective date', 'On approval by Senate'],
           ['Review', 'At least every two years, or sooner if technology, law or regulation changes'],
         ]
       ),

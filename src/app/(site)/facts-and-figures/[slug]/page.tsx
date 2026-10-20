@@ -43,12 +43,7 @@ export default async function IndicatorPage({ params }: { params: Promise<{ slug
             <ArrowLeft className="h-4 w-4" />
             Facts &amp; Figures
           </Link>
-          {typeof indicator.indicatorNumber === 'number' && (
-            <p className="mt-4 text-md font-semibold uppercase tracking-wide text-white/60">
-              Indicator {indicator.indicatorNumber}
-            </p>
-          )}
-          <h1 className="mt-3 font-display text-3xl font-bold sm:text-5xl">{indicator.title}</h1>
+          <h1 className="mt-4 font-display text-3xl font-bold sm:text-5xl">{indicator.title}</h1>
           <span className="mx-auto mt-5 block h-1 w-16 rounded-full bg-crimson" />
           {indicator.summary && (
             <p className="mx-auto mt-5 max-w-3xl text-white/80">{indicator.summary}</p>

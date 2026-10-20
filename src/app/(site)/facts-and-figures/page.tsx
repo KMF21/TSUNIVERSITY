@@ -40,7 +40,7 @@ export default async function FactsAndFiguresPage() {
           <AnimateHeading />
           {indicators.length === 0 ? (
             <p className="p-8 text-center text-ink-muted">
-              Indicators are being compiled and will appear here shortly.
+              Statistics are being compiled and will appear here shortly.
             </p>
           ) : (
             <StaggerGroup className="grid gap-5 p-4 sm:grid-cols-2 lg:grid-cols-3" staggerDelay={0.05}>
@@ -50,12 +50,7 @@ export default async function FactsAndFiguresPage() {
                     href={`/facts-and-figures/${ind.slug}`}
                     className="group flex h-full flex-col rounded-card border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-crimson hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson"
                   >
-                    {typeof ind.indicatorNumber === 'number' && (
-                      <span className="text-xs font-semibold uppercase tracking-wide text-crimson">
-                        Indicator {ind.indicatorNumber}
-                      </span>
-                    )}
-                    <h3 className="mt-2 font-display text-lg font-bold text-navy">{ind.title}</h3>
+                    <h3 className="font-display text-lg font-bold text-navy">{ind.title}</h3>
                     {ind.summary && (
                       <p className="mt-2 flex-1 text-sm leading-6 text-ink-muted">{ind.summary}</p>
                     )}
@@ -70,7 +65,7 @@ export default async function FactsAndFiguresPage() {
                       </div>
                     )}
                     <span className="mt-4 flex items-center gap-1 text-sm font-semibold text-crimson">
-                      View indicator
+                      View details
                       <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                     </span>
                   </Link>
@@ -87,7 +82,7 @@ export default async function FactsAndFiguresPage() {
 function AnimateHeading() {
   return (
     <div className="p-5 pb-0 sm:p-6 sm:pb-0">
-      <SectionHeading eyebrow="University Statistics" title="Explore by Indicator" />
+      <SectionHeading eyebrow="University Statistics" title="Explore the Data" />
     </div>
   )
 }
