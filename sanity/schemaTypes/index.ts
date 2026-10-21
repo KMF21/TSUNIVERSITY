@@ -5,6 +5,7 @@ import department from './department'
 import leadershipProfile from './leadershipProfile'
 import page from './page'
 import siteSettings from './siteSettings'
+import contactPage from './contactPage'
 import tetfundIntervention from './tetfundIntervention'
 import studentLifeCategory from './studentLifeCategory'
 import academicCalendarEntry from './academicCalendarEntry'
@@ -25,6 +26,7 @@ export const schemaTypes = [
   leadershipProfile,
   page,
   siteSettings,
+  contactPage,
   tetfundIntervention,
   studentLifeCategory,
   academicCalendarEntry,

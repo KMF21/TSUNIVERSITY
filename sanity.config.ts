@@ -30,6 +30,14 @@ export default defineConfig({
                   .documentId('siteSettings')
               ),
             S.listItem()
+              .title('Contact Information')
+              .id('contactPage')
+              .child(
+                S.document()
+                  .schemaType('contactPage')
+                  .documentId('contactPage')
+              ),
+            S.listItem()
               .title('Institutional Facts')
               .id('institutionalFacts')
               .child(
@@ -76,7 +84,7 @@ export default defineConfig({
             S.divider(),
             ...S.documentTypeListItems().filter(
               (item) =>
-                !['siteSettings', 'institutionalFacts', 'rankingsPage', 'conference', 'proceedings'].includes(
+                !['siteSettings', 'contactPage', 'institutionalFacts', 'rankingsPage', 'conference', 'proceedings'].includes(
                   item.getId() ?? ''
                 )
             ),

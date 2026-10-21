@@ -105,6 +105,11 @@ export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   heroImage, aboutImage
 }`
 
+export const CONTACT_PAGE_QUERY = `*[_type == "contactPage"][0]{
+  cards[]{_key, label, lines[]{_key, kind, value}},
+  map{embedUrl, latitude, longitude}
+}`
+
 export const LEADERSHIP_QUERY = `*[_type == "leadershipProfile" && category in ["principal-officer", "governing-council", "dean", "hod"]] | order(order asc){
   _id, name, slug, role, category, photo
 }`
