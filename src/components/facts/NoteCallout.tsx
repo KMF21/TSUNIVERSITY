@@ -21,6 +21,7 @@ export function NoteCallout({ section }: { section: NoteSection }) {
         {section.linkHref && (
           <Link
             href={section.linkHref}
+            {...(/^https?:/.test(section.linkHref) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="mt-2 inline-flex items-center gap-1 font-semibold text-crimson hover:underline"
           >
             {section.linkLabel || 'Learn more'}

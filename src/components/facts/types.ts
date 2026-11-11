@@ -3,6 +3,7 @@ export type IndicatorStat = { value?: string; label: string }
 export type FactsTableRow = { cells?: string[]; emphasis?: boolean }
 export type FactsTableSection = {
   _type: 'factsTable'
+  _key?: string
   heading?: string
   intro?: string
   columns?: string[]
@@ -13,12 +14,14 @@ export type FactsTableSection = {
 export type BarPanelBar = { label: string; percent?: number; displayValue?: string }
 export type BarPanelSection = {
   _type: 'barPanel'
+  _key?: string
   heading?: string
   bars?: BarPanelBar[]
 }
 
 export type NoteSection = {
   _type: 'note'
+  _key?: string
   tone?: 'pending' | 'formula' | 'info'
   text?: string
   linkHref?: string
@@ -27,6 +30,7 @@ export type NoteSection = {
 
 export type RichTextSection = {
   _type: 'richText'
+  _key?: string
   heading?: string
   body?: any
 }
