@@ -22,7 +22,11 @@ export function StaggerGroup({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      // Start as soon as any part of the group is on screen. A fractional
+      // threshold (e.g. 0.15) can never be met by a tall single-column list
+      // on a phone — the screen is shorter than 15% of the group — which left
+      // every item stuck at opacity 0 (invisible but still clickable).
+      viewport={{ once: true, amount: 'some' }}
       variants={staggerContainer(staggerDelay)}
       className={className}
     >
